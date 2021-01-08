@@ -1,11 +1,12 @@
 import sqlite3
 import random
 import os
+import hashlib
 
 #create a separate way to track session_id
 class User:
-
-    def __init__(self, username, email, password, height, weight, level=1, plateau=0, goal, lupdate):
+    dbpath = "temp until perm"
+    def __init__(self, username, email, password, height, weight, goal, lupdate, level=1, plateau=0):
         self.username = username
         self.email = email
         self.password = password
@@ -17,8 +18,8 @@ class User:
         self.lupdate = lupdate
 
     #add new users to db
-    def insert():
-        with sqlite3.connect(self.dbpath) as conn:
+    def insert(self, cls):
+        with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             INSERT INTO {self.tablename} (
@@ -27,9 +28,9 @@ class User:
             values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.timezon)
             cursor.execute(sql, values)
 
-    def update(self, tablename=users, column, uservalue):
+    def update(self, cls, column, uservalue, tablename="users"):
         #take in keyword args or dict and insert into strvar
-        with sqlite3.connect(self.dbpath) as conn:
+        with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             UPDATE {self.tablename}
@@ -38,8 +39,8 @@ class User:
             return
 
     @classmethod
-    def login(self, username, password):
-        with sqlite3.connect(self.dbpath) as conn:
+    def login(self, cls, username, password):
+        with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             SELECT * WHERE {self.username}
@@ -51,7 +52,7 @@ class User:
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = """SELECT * FROM users WHERE session_id=?"""
-            cursor.execute(sql(session_id))
+            cursor.execute(sql, (session_id))
             return
 
     @staticmethod
@@ -61,13 +62,13 @@ class User:
     
     @staticmethod
     def passhash(password):
-        phash = sha256()
+        phash = hashlib.sha256()
         phash.update(password.encode())
         return phash.hexdigest()
     
     @staticmethod
     def create_session_id():
-        shash = sha256()
+        shash = hashlib.sha256()
         rando = ""
         for _ in range(16):
             rando.join(str(random.randint(0,9)))
