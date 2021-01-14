@@ -22,30 +22,43 @@ class User:
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
-            INSERT INTO {self.tablename} (
+            INSERT INTO users (
                 username, email, password, height, weight, level, plateau, goal
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.timezon)
             cursor.execute(sql, values)
 
-    def update(self, cls, column, uservalue, tablename="users"):
+    def update_user(self, cls, column, uservalue):
         #take in keyword args or dict and insert into strvar
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
-            UPDATE {self.tablename}
-            SET {self.column} = {uservalue}
+            UPDATE users
+            SELECT * WHERE {self.username}
+            SET {column} = {uservalue}
             """
+            cursor.execute(sql)
+            return
+    
+    def update_calories(self, cls, username, column, value):
+        with sqlite3.connect(cls.dbpath) as conn:
+            cursor = conn.cursor()
+            sql = f"""
+            UPDATE tablename
+            SELECT * WHERE {self.username}
+            SET {column} = {value}
+            """
+            cursor.execute(sql)
             return
 
-    @classmethod
     def login(self, cls, username, password):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             SELECT * WHERE {self.username}
             """
-        pass
+            cursor.execute(sql)
+            return
 
     @classmethod
     def authentication(cls, session_id):
