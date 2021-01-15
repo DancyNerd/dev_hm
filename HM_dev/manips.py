@@ -48,6 +48,8 @@ def graph_vectors(weight, timelapsed):
 
 def vector_list(whlist):
     vectorlist = []
+    x=0
+    y=0
     for _ in whlist:
         vectorlist.append({
             x:y

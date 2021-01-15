@@ -25,7 +25,7 @@ class User:
             INSERT INTO users (
                 username, email, password, height, weight, level, plateau, goal
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-            values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.timezon)
+            values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.lupdate)
             cursor.execute(sql, values)
 
     def update_user(self, column, uservalue):
@@ -62,11 +62,10 @@ class User:
 
     #create Levels and return current level
     def new_level(self, level, plateau, goal):
-        
+        pass
 
-    @classmethod
-    def authentication(cls, session_id):
-        with sqlite3.connect(cls.dbpath) as conn:
+    def authentication(self, session_id):
+        with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = """SELECT * FROM users WHERE session_id=?"""
             cursor.execute(sql, (session_id))
