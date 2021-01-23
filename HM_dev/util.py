@@ -16,5 +16,7 @@ def ret_results():
     pass
 
 #update the graph info/dynamic
+'''
 def upd_graph():
     pass
+'''

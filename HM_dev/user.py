@@ -6,16 +6,17 @@ import hashlib
 #create a separate way to track session_id
 class User:
     dbpath = "hmedev.db"
-    def __init__(self, username, email, password, height, weight, goal, lupdate, level=1, plateau=0):
+    def __init__(self, username, email, password, hsex, height, weight, goal, streakcount=0, level=1, plateau=0):
         self.username = username
         self.email = email
         self.password = password
+        self.hsex = hsex
         self.height = height
         self.weight = weight
         self.level = level
         self.plateau = plateau
         self.goal = goal
-        self.lupdate = lupdate #?
+        self.streakcount = streakcount
 
     #add new users to db
     def insert(self):
@@ -23,10 +24,11 @@ class User:
             cursor = conn.cursor()
             sql = f"""
             INSERT INTO users (
-                username, email, password, height, weight, level, plateau, goal
+                username, email, password, height, weight, level, plateau, goal, streakcount
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-            values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.lupdate)
+            values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.streakcount)
             cursor.execute(sql, values)
+            return
 
     def update_user(self, column, uservalue):
         #take in keyword args or dict and insert into strvar

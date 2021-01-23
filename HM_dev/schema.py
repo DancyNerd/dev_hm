@@ -40,10 +40,12 @@ def schema(dbpath="hmedev.db"):
         username VARCHAR(16) UNIQUE NOT NULL,
         email VARCHAR UNIQUE NOT NULL,
         password VARCHAR NOT NULL,
-        session_id VARCHAR(16),
+        hsex VARCHAR(2),
         height REAL(6),
         weight REAL(6),
-        level INTEGER
+        level INTEGER,
+        goal REAL(6),
+        streakcount INTEGER
         )""")
 
 
