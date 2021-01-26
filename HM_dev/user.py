@@ -2,6 +2,7 @@ import sqlite3
 import random
 import os
 import hashlib
+from datetime import datetime
 
 #create a separate way to track session_id
 class User:
@@ -93,3 +94,8 @@ class User:
             rando.join(str(random.randint(0,9)))
         shash.update(rando.encode())
         return shash.hexdigest()[:15]
+
+    def _append_weight(self, weight):
+        curdt = datetime.now()
+        strweight = str(weight)
+        dicweight = {weight:curdt}

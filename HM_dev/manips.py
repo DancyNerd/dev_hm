@@ -1,5 +1,9 @@
 #import math?
 
+def get_weight(weight):
+    nweight = str(weight.keys())
+    return nweight
+
 def bmi_calc(weight, height):
     #convert height to meters
     cheight = float(round(height/100), 4)
@@ -14,7 +18,7 @@ def bmi_calc(weight, height):
 
 #Mifflin-St Jeor Equation for basal metabolic rate
 def mifflinstjeor(fheight, fweight, hsex, age):
-    if hsex == "Male":
+    if hsex == "M":
         bmrmsj = float(round(10*fweight + 6.25*fheight - 5*age + 5), 4)
     else:
         bmrmsj = float(round(10*fweight + 6.25*fheight - 5*age - 161), 4)
@@ -22,7 +26,7 @@ def mifflinstjeor(fheight, fweight, hsex, age):
 
 #Revised Harris-Benedict Equation for basal metabolic rate
 def rharrisbenedict(fheight, fweight, hsex, age):
-    if hsex == "Male":
+    if hsex == "M":
         bmrhb = float(round(13.397*fweight + 4.799*fheight - 5.677*age + 88.362), 4)
     else:
         bmrhb = float(round(9.247*fweight + 3.098*fheight - 4.330*age + 447.593), 4)
@@ -34,9 +38,9 @@ def katchmcardle(fweight, bmi):
     return bmrkm
 
 #Average the 3 BMR equations to get our use case
-def bmravg(fheight, fweight, hsex, age, bmi):
-    bmr = float(round(mifflinstjeor(fheight, fweight, hsex, age) + rharrisbenedict(fheight, fweight, hsex, age) + katchmcardle(fweight, bmi)), 2)
-    return bmr
+def bmr_avg(fheight, fweight, hsex, age, bmi):
+    bmravg = float(round(mifflinstjeor(fheight, fweight, hsex, age) + rharrisbenedict(fheight, fweight, hsex, age) + katchmcardle(fweight, bmi)), 2)
+    return bmravg
 
 def calorie_eq():
     pass
