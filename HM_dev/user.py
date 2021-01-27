@@ -2,7 +2,7 @@ import sqlite3
 import random
 import os
 import hashlib
-from datetime import datetime
+from datetime import date
 
 #create a separate way to track session_id
 class User:
@@ -20,7 +20,11 @@ class User:
         self.streakcount = streakcount
 
     #add new users to db
-    def insert(self):
+    def insert(self, username, email, password, height, weight, level, plateau, goal, streakcount):
+
+        nweight = self.append_weight(weight)
+        self.weight = nweight
+
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
@@ -95,7 +99,14 @@ class User:
         shash.update(rando.encode())
         return shash.hexdigest()[:15]
 
-    def _append_weight(self, weight):
-        curdt = datetime.now()
+    def append_weight(self, weight):
+        curdt = date.today()
         strweight = str(weight)
-        dicweight = {weight:curdt}
+        dicweight = {strweight:curdt}
+        return dicweight
+
+    def reset_lvl(self):
+        level = 1
+        column = "level"
+        self.update_user(column, level)
+        return
