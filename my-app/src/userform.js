@@ -1,6 +1,14 @@
 import React from 'react';
 
 
+function handleChange(evt) {
+    //const value=evt.target.value;
+    setState({
+        ...state, 
+        [evt.target.name]: value
+    });
+}
+
 function userForm(){
     const[state, setState] = React.useState({
         weight: "",
@@ -31,13 +39,6 @@ function userForm(){
     )
 }
 
-function handleChange(evt) {
-    const value=evt.target.value;
-    setState({
-        ...state, 
-        [evt.target.name]: value
-    });
-}
 
 
 

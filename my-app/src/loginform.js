@@ -1,5 +1,13 @@
 import React from 'react';
 
+function handleChange(evt) {
+    //const value = evt.target.value;
+    setState({
+        ...state, 
+        [evt.target.name]:value
+    });
+}
+
 function loginForm() {
 
     const [state, setState] = React.useState({
@@ -29,14 +37,6 @@ function loginForm() {
             </label>
         </form>
     );
-}
-
-function handleChange(evt) {
-    const value = evt.target.value;
-    setState({
-        ...state, 
-        [evt.target.name]:value
-    });
 }
 
 

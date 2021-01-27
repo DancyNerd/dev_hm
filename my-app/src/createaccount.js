@@ -30,6 +30,14 @@ using post/fetch.
 Add data validation.
 */
 
+function handleChange(evt) {
+    //const value = evt.target.value;
+    setState({
+        ...state, 
+        [evt.target.name]: value
+    });
+}
+
 function accountForm() {
     const [state, setState] = React.useState ({
         username: "",
@@ -63,7 +71,7 @@ function accountForm() {
             
             <label data-tip data-for="hormSex">
                 Hormonal Sex
-                <select named="hsex" 
+                <select name="hsex" 
                 onChange={handleChange} 
                 value={state.hsex}>
                     <option value="F">
@@ -102,14 +110,6 @@ function accountForm() {
             </ReactTooltip>
         </form>
     );
-}
-
-function handleChange(evt) {
-    const value = evt.target.value;
-    setState9({
-        ...state, 
-        [evt.target.name]: value
-    });
 }
 
 
