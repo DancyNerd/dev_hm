@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function loginForm(){
+function userForm(){
     const[state, setState] = React.useState({
         weight: "",
         foodlog: "",
@@ -30,3 +30,18 @@ function loginForm(){
         </form>
     )
 }
+
+function handleChange(evt) {
+    const value=evt.target.value;
+    setState({
+        ...state, 
+        [evt.target.name]: value
+    });
+}
+
+
+
+
+
+
+export default userForm;

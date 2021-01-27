@@ -48,14 +48,15 @@ def schema(dbpath="hmedev.db"):
         streakcount INTEGER
         )""")
 
-   ''' with sqlite3.connect(dbpath) as conn:
+    with sqlite3.connect(dbpath) as conn:
         cursor = conn.cursor()
         cursor.execute("""
         CREATE TABLE calorietrack (
             username VARCHAR(16) UNIQUE NOT NULL,
-            calories varchar(20),
+            calories VARCHAR,
+            graphpoints VARCHAR
         )
-        """)'''
+        """)
 
 
 
