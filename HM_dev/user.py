@@ -8,7 +8,7 @@ from schema import schema
 #create a separate way to track session_id
 class User:
     dbpath = "hmedev.db"
-    def __init__(self, username, email, password, hsex, height, weight, goal, streakcount=0, level=1, plateau=0):
+    def __init__(self, username, email, hsex, height, weight, goal, password=0, streakcount=0, level=1, plateau=0):
         self.username = username
         self.email = email
         self.password = password
@@ -21,12 +21,12 @@ class User:
         self.streakcount = streakcount
 
     #add new users to db
-    def insert(self, username, email, height, weight, level, plateau, goal, streakcount):
+    def insert(self):
 
         passcode = self.create_pass()
         self.password = self.passhash(passcode)
 
-        nweight = self.append_weight(weight)
+        nweight = self.append_weight(self.weight)
         self.weight = nweight
 
         with sqlite3.connect(self.dbpath) as conn:

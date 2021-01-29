@@ -28,7 +28,7 @@ def user_create():
         retmsg = error_list(var)
     else:
         newuser = User(username, email, hsex, height, weight, goal)
-        retmsg = User.insert(newuser)
+        retmsg = newuser.insert()
 
     return request.jsonify(retmsg)
 

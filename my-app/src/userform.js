@@ -32,7 +32,42 @@ function weightSec() {
                 Submit Weight
             </Button>
         </Form>
-    )
+    );
+}
+
+function fdaSearch() {
+    return (
+        <Form 
+        ref="calSearch" 
+        onSubmit="handleSubmit"
+        >
+            <label>
+                Search for calories here.
+                <input 
+                type="text" 
+                name="calSeek" 
+                value={state.calSeek} 
+                onChange={handleChange} 
+                />
+            </label>
+            <Button>
+                Submit Search
+            </Button>
+        </Form>
+    );
+}
+
+function calSec() {
+    return (
+        <Form 
+        ref="calForm" 
+        onSubmit="handleSubmit" 
+        >
+            <label>
+                Calories
+            </label>
+        </Form>
+    );
 }
 
 function userForm(){
@@ -43,26 +78,11 @@ function userForm(){
 
     return (
         <Form>
-            <label>
-                Today's Weight
-                <input 
-                type="text" 
-                name="weight" 
-                value={state.weight} 
-                onChange={handleChange} 
-                />
-            </label>
-            <label>
-                Today's Consumption
-                <input 
-                type="text" 
-                name="foodlog" 
-                value={state.weight} 
-                onChange={handleChange} 
-                />
-            </label>
+            {weightSec}<br />
+            {fdaSearch}<br />
+            {calSec}<br />
         </Form>
-    )
+    );
 }
 
 
