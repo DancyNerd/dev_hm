@@ -9,6 +9,10 @@ function handleChange(evt) {
     });
 }
 
+function handleSubmit() {
+    return("something");
+}
+
 function userForm(){
     const[state, setState] = React.useState({
         weight: "",
