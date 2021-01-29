@@ -2,6 +2,8 @@ import React, { useState} from 'react';
 import ReactTooltip from 'react-tooltip';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 /*
 Account creation
@@ -10,7 +12,7 @@ weight
 hormonal sex
 email
 username
---triggers passcode functionality 
+--triggers passcode functionality
 session_id?
 level set to 1
 goal
@@ -131,7 +133,7 @@ function accountForm() {
     });
 
     return(
-        <form 
+        <Form 
         ref="acctform" 
         onSubmit={handleSubmit}
         >
@@ -172,7 +174,7 @@ function accountForm() {
             <label>
                 Weight
                 <input
-                type="text" 
+                type="number" 
                 name="weight" 
                 value={state.weight} 
                 onChange={handleChange}
@@ -180,9 +182,9 @@ function accountForm() {
             </label><br />
 
             <label>
-                Height
+                Height in CENTIMETERS
                 <input 
-                type="text" 
+                type="number" 
                 name="height" 
                 value={state.height} 
                 onChange={handleChange}
@@ -192,23 +194,23 @@ function accountForm() {
             <label>
                 Goal
                 <input 
-                type="text" 
+                type="number" 
                 name="goal" 
                 value={state.goal} 
                 onChange={handleChange} 
                 />
             </label>
 
-            <button type="submit" onSubmit={handleSubmit}>
+            <Button type="submit" onSubmit={handleSubmit}>
                 Submit Form
-            </button>
+            </Button>
 
             <ReactTooltip id="hormSex" place="bottom" effect="solid">
                 We need to know what hormones your body has the highest percentage of,<br />
                 so we can calculate your BMR as accurately as possible. We understand <br />
                 that this might not accurately reflect your gender or lack thereof.
             </ReactTooltip>
-        </form>
+        </Form>
     );
 }
 

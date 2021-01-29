@@ -27,10 +27,8 @@ def user_create():
         var=1
         retmsg = error_list(var)
     else:
-        passcode = User.create_pass()
-        newuser = User(username, email, passcode, hsex, height, weight, goal)
-        retmsg = ("Your password is: "+str(passcode))
-        User.insert(newuser)
+        newuser = User(username, email, hsex, height, weight, goal)
+        retmsg = User.insert(newuser)
 
     return request.jsonify(retmsg)
 

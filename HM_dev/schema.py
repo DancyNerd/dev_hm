@@ -45,16 +45,18 @@ def schema(dbpath="hmedev.db"):
         weight VARCHAR(20),
         level INTEGER,
         goal REAL(6),
-        streakcount INTEGER
+        streakcount INTEGER, 
+        plateau INTEGER
         )""")
 
     with sqlite3.connect(dbpath) as conn:
         cursor = conn.cursor()
         cursor.execute("""
         CREATE TABLE calorietrack (
-            username VARCHAR(16) UNIQUE NOT NULL,
+            user VARCHAR(16) UNIQUE NOT NULL,
             calories VARCHAR,
-            graphpoints VARCHAR
+            graphpoints VARCHAR, 
+            FOREIGN KEY (user) REFERENCES users(username)
         )
         """)
 

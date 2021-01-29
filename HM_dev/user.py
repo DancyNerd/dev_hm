@@ -3,6 +3,7 @@ import random
 import os
 import hashlib
 from datetime import date
+from schema import schema
 
 #create a separate way to track session_id
 class User:
@@ -20,7 +21,10 @@ class User:
         self.streakcount = streakcount
 
     #add new users to db
-    def insert(self, username, email, password, height, weight, level, plateau, goal, streakcount):
+    def insert(self, username, email, height, weight, level, plateau, goal, streakcount):
+
+        passcode = self.create_pass()
+        self.password = self.passhash(passcode)
 
         nweight = self.append_weight(weight)
         self.weight = nweight
@@ -29,11 +33,12 @@ class User:
             cursor = conn.cursor()
             sql = f"""
             INSERT INTO users (
-                username, email, password, height, weight, level, plateau, goal, streakcount
+                username, email, password, height, weight, level, plateau, goal, streakcount, level, plateau
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.streakcount)
             cursor.execute(sql, values)
-            return
+            upc = {self.username:passcode}
+            return (upc)
 
     def update_user(self, column, uservalue):
         #take in keyword args or dict and insert into strvar

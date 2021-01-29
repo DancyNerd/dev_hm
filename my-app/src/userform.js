@@ -13,6 +13,28 @@ function handleSubmit() {
     return("something");
 }
 
+function weightSec() {
+    return (
+        <Form
+        ref="weightForm" 
+        onSubmit="handleSubmit"
+        >
+            <label>
+                Today's Weight
+                <input 
+                type="number" 
+                name="weight" 
+                value={state.weight} 
+                onChange={handleChange}
+                />
+            </label>
+            <Button>
+                Submit Weight
+            </Button>
+        </Form>
+    )
+}
+
 function userForm(){
     const[state, setState] = React.useState({
         weight: "",
@@ -20,7 +42,7 @@ function userForm(){
     });
 
     return (
-        <form>
+        <Form>
             <label>
                 Today's Weight
                 <input 
@@ -39,7 +61,7 @@ function userForm(){
                 onChange={handleChange} 
                 />
             </label>
-        </form>
+        </Form>
     )
 }
 

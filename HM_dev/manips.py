@@ -1,5 +1,3 @@
-#import math?
-
 def get_weight(weight):
     nweight = str(weight.keys())
     return nweight

@@ -42,7 +42,7 @@ function loginForm() {
     });
 
     return (
-        <form
+        <Form
         ref="logForm"
         onSubmit="handleSubmit"
         >
@@ -64,10 +64,10 @@ function loginForm() {
                 onChange={handleChange}
                 />
             </label>
-            <button type="submit" onSubmit={handleSubmit}>
+            <Button type="submit" onSubmit={handleSubmit}>
                 Submit
-            </button>
-        </form>
+            </Button>
+        </Form>
     );
 }
 
