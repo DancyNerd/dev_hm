@@ -39,7 +39,7 @@ function handleChange(evt) {
         [evt.target.name]: value
     });
 }
-
+/*
 function nameValidate(evtVal) {
     return false;
 }
@@ -63,9 +63,25 @@ function heightValidate(evtVal) {
 function goalValidate(evtVal) {
     return false;
 }
-
+*/
 function handleSubmit(event) {
     event.preventDefault();
+    eName = event.target.name;
+    eVal = event.target.value;
+
+    const configi = {
+        method:"POST", 
+        body: JSON.stringify({
+            "username":"",
+            "emailAdd":"",
+            "hsex":"",
+            "weight":"",
+            "height":"",
+            "goal":""
+        })
+    }
+
+    /*event.preventDefault();
     evtName = event.target.name
     evtVal = event.target.value
 
@@ -74,8 +90,9 @@ function handleSubmit(event) {
     var hVal = False;
     var wVal = False;
     var hsVal = False;
-    var gVal = False;
+    var gVal = False; */
 
+    /*
     if (evtName=="username") {
         nVal = nameValidate(evtVal);
         if (nVal==false) {
@@ -119,6 +136,7 @@ function handleSubmit(event) {
     }
 
     return"";
+*/
 }
 
 
@@ -215,4 +233,4 @@ function accountForm() {
 }
 
 
-export default accountForm;
+export default accountForm();

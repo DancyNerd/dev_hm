@@ -8,6 +8,7 @@ function handleChange(evt) {
     });
 }
 
+/*
 function nameValidate(evtVal) {
     return false;
 }
@@ -15,12 +16,22 @@ function nameValidate(evtVal) {
 function passValidate(evtVal) {
     return false;
 }
+*/
 
 function handleSubmit(event) {
     event.preventDefault();
     evtName = event.target.name;
     evtVal = event.target.value;
 
+    const configi = {
+        method:"POST",
+        body:JSON.stringify({
+            "username":"",
+            "passcode":""
+        })
+    }
+
+    /*
     var nVal = false;
     var pVal = false;
 
@@ -32,6 +43,7 @@ function handleSubmit(event) {
     }
 
     return false;
+*/
 }
 
 function loginForm() {
