@@ -1,13 +1,18 @@
 from flask import Flask, request
 from user import User
 
+'''
+LINUX USERS USE export FLASK_APP=approutes.py
+WINDOWS USERS USE set FLASK_APP=approutes.py
+'''
+
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    pass
+    return("I don't really exist yet, sorry.")
 
-@app.route('/newuser', method=['POST'])
+@app.route('/newuser', methods=['GET','POST'])
 def user_create():
     data = request.get_json()
     keylist = data.keys()
@@ -38,17 +43,19 @@ def create_success():
     return jsonify({"account":"successfully created"})
 '''
 
-@app.route('/login', method=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     pass
 
-@app.route('/u/<username>', method=['POST'])
+@app.route('/u/<username>', methods=['POST'])
 def user(username):
     pass
 
+'''
 @app.route('/settings', method=['POST'])
 def change_settings():
     pass
+'''
 
 def error_list(errno):
     if errno==0:
@@ -62,3 +69,6 @@ def error_list(errno):
     else:
         msg = {"Error":"OH NO BABY WHAT IS YOU DOING"}
     return msg
+
+if __name__=="__main__":
+    user_create()
