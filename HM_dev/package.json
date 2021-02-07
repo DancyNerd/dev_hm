@@ -1,0 +1,32 @@
+{
+  "name": "hm_dev",
+  "version": "1.0.0",
+  "description": "Application for healthy weight and calorie tracking",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DancyNerd/dev_hm.git"
+  },
+  "keywords": [
+    "healthy",
+    "me",
+    "development",
+    "weight",
+    "calorie",
+    "loss",
+    "gain",
+    "tracking"
+  ],
+  "author": "DancyNerd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DancyNerd/dev_hm/issues"
+  },
+  "homepage": "https://github.com/DancyNerd/dev_hm#readme",
+  "dependencies": {
+    "create-react-app": "^4.0.2"
+  }
+}
