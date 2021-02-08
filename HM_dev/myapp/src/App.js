@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import loginform from './loginform';
+import LoginForm from './loginform';
 
 function App() {
   return (
     <div className="App">
-      {loginform}
+      <LoginForm />
     </div>
   );
 }
