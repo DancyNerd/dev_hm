@@ -31,10 +31,10 @@ class LoginForm extends React.Component {
                 <input type='text' />
                 <input type='submit' value='Submit' />
             </form>
-        )
+        );
     }
 }
 
 
 
-export default new LoginForm;
+export default LoginForm;
