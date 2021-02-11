@@ -1,5 +1,6 @@
 from flask import Flask, request
 from user import User
+from flask_cors import CORS
 
 '''
 LINUX USERS USE export FLASK_APP=approutes.py
@@ -7,6 +8,7 @@ WINDOWS USERS USE set FLASK_APP=approutes.py
 '''
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def home():

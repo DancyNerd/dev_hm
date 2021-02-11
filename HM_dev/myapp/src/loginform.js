@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class LoginForm extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {value: ''};
 
         this.handleChange = this.handleChange.bind(this);
@@ -16,6 +16,11 @@ class LoginForm extends React.Component {
     handleSubmit(event) {
         alert('Your value ' + this.state.value);
         event.preventDefault();
+
+    }
+
+    componentDidMount() {
+        fetch("http://127.0.0.1:5000/login").then(console.log);
     }
 
     render() {
@@ -24,11 +29,11 @@ class LoginForm extends React.Component {
                 <label>
                     Username:
                 </label>
-                <input type='text' value={this.state.value} onChange={this.handleChange} /><br />
+                <input type='text' name='username' value={this.state.value} onChange={this.handleChange} /><br />
                 <label>
                     Password:
                 </label>
-                <input type='text' />
+                <input type='text' name='passcode' />
                 <input type='submit' value='Submit' />
             </form>
         );

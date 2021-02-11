@@ -64,13 +64,19 @@ class User:
             return
 
     def login(self, username, password):
-        with sqlite3.connect(self.dbpath) as conn:
-            cursor = conn.cursor()
-            sql = f"""
-            SELECT * WHERE {self.username}
-            """
-            cursor.execute(sql)
-            return
+        if username and password:
+            with sqlite3.connect(self.dbpath) as conn:
+                cursor = conn.cursor()
+                sql = f"""
+                SELECT * WHERE {self.username} and {self.password}
+                """
+                cursor.execute(sql)
+                
+                jsondata = {"Cookie ID":self.username}
+        else:
+            jsondata = {"Error":"sorry no"}
+
+            return (jsondata)
 
     #create Levels and return current level
     def new_level(self, level, plateau, goal):
@@ -86,7 +92,7 @@ class User:
     @staticmethod
     def create_pass():
         #make string?
-        passcode = random.randint(10000000000000, 999999999999999)
+        passcode = random.randint(10000000000000, 99999999999999)
         return passcode
     
     @staticmethod
