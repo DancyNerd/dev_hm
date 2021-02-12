@@ -8,7 +8,7 @@ from schema import schema
 #create a separate way to track session_id
 class User:
     dbpath = "hmedev.db"
-    def __init__(self, username, email, hsex, height, weight, goal, password=0, streakcount=0, level=1, plateau=0):
+    def __init__(self, username, email, height, weight, hsex, goal, password=0, streakcount=0, level=1, plateau=0):
         self.username = username
         self.email = email
         self.password = password
@@ -68,11 +68,11 @@ class User:
             with sqlite3.connect(self.dbpath) as conn:
                 cursor = conn.cursor()
                 sql = f"""
-                SELECT * WHERE {self.username} and {self.password}
+                SELECT * WHERE {username} and {password}
                 """
                 cursor.execute(sql)
                 
-                jsondata = {"Cookie ID":self.username}
+                jsondata = {"Cookie ID":username}
         else:
             jsondata = {"Error":"sorry no"}
 

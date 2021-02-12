@@ -47,7 +47,11 @@ def create_success():
 
 @app.route('/login', methods=['POST'])
 def login():
-    pass
+    data = request.get_json()
+    username = str(data.keys())
+    passcode = str(data.values())
+    jsondata = User.login(username, passcode)
+    return (request.jsonify(jsondata))
 
 @app.route('/u/<username>', methods=['POST'])
 def user(username):

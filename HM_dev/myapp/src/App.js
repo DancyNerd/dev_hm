@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import LoginForm from './loginform';
+import AcctForm from './accountform';
 
 function App() {
   //Add cookie logic??
@@ -16,7 +17,7 @@ function App() {
   */
   return (
     <div className="App">
-      <LoginForm />
+      <AcctForm />
     </div>
   );
 }
