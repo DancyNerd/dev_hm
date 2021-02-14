@@ -2,22 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import LoginForm from './loginform';
 import AcctForm from './accountform';
+import WeightForm from './useweight';
+import MainForm from './mainform';
 
 function App() {
-  //Add cookie logic??
-  /*
-  if cookie:
   return (
     <div className="App">
-      <HomeView />
-    </div>
-  );
-  else:
-  return
-  */
-  return (
-    <div className="App">
-      <LoginForm />
+      <MainForm />
     </div>
   );
 }

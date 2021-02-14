@@ -1,37 +1,47 @@
 import React, { Component } from 'react';
 
-class UsageForm extends React.Component {
+class WeightForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {value: ''};
+        this.state = {weight: ''};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            ...this.state,
+            [name]: value
+        })
     }
 
     handleSubmit(event) {
-        alert('value: ' +this.state.value);
         event.preventDefault();
+        const { weight } = this.state;
+        alert(`weight: ${weight}`);
     }
 
     render() {
         return(
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     Weight:
-                    <input name='weight' />
+                    <input name='weight' 
+                    type='number' 
+                    value= {this.state.weight} 
+                    onChange={this.handleChange}
+                    />
                 </label>
-                <label>
-                    Calories:
-                </label>
+                <input type='submit' />
             </form>
         );
     }
 
 }
 
-export default UsageForm;
+export default WeightForm;
