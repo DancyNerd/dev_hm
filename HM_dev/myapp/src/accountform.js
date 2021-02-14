@@ -20,17 +20,18 @@ class AcctForm extends React.Component {
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'selected' ? target.selected : target.value;
-        const name = target.name;
+        const name = event.target.name;
 
         this.setState({
-            [name]:value
+            ...this.state,
+            [name]: value
         });
         
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        alert(this.state);
+        alert(this.state.username);
 
     }
 
@@ -39,14 +40,20 @@ class AcctForm extends React.Component {
     }*/
 
     render() {
+        const username = this.state.username;
+        const emailAdd = this.state.emailAdd;
+        const height = this.state.height;
+        const weight = this.state.weight;
+        const hsex = this.state.hsex;
+        const goal = this.state.goal;
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     Username:
                     <input 
                     type='text' 
                     name='username' 
-                    value = {this.state.onChange}
+                    value = {this.state.handleInputChange}
                     />
                 </label><br />
                 <label>
@@ -54,7 +61,7 @@ class AcctForm extends React.Component {
                     <input 
                     type='text' 
                     name='emailAdd' 
-                    value={this.state.onChange}
+                    value={this.state.handleInputChange}
                     />
                 </label><br />
                 <label>
@@ -62,7 +69,7 @@ class AcctForm extends React.Component {
                     <input 
                     name='height' 
                     type='number' 
-                    value={this.state.onChange}
+                    value={this.state.handleInputChange}
                     />
                 </label><br />
                 <label>
@@ -70,14 +77,14 @@ class AcctForm extends React.Component {
                     <input 
                     name='weight' 
                     type='number' 
-                    value={this.state.onChange}
+                    value={this.state.handleInputChange}
                     />
                 </label><br />
                 <label>
                     Hormonal Sex: 
                     <select 
                     name='hsex'
-                    selected={this.state.onChange}
+                    selected={this.state.handleInputChange}
                     >
                         <option value="F">
                             Female
@@ -89,9 +96,13 @@ class AcctForm extends React.Component {
                 </label><br />
                 <label>
                     Goal: 
-                    <input name='goal' type='number' />
+                    <input 
+                    name='goal' 
+                    type='number' 
+                    value={this.state.handleInputChange}
+                    />
                 </label><br />
-                <input type='submit' onSubmit={this.handleSubmit} />
+                <input type='submit' />
 
             </form>
         );
