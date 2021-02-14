@@ -19,8 +19,8 @@ class AcctForm extends React.Component {
 
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'selected' ? target.selected : target.value;
-        const name = event.target.name;
+        const value = target.value;
+        const name = target.name;
 
         this.setState({
             ...this.state,
@@ -30,8 +30,23 @@ class AcctForm extends React.Component {
     }
 
     handleSubmit(event) {
+        const { username, emailAdd, height, weight, hsex, goal } = this.state;
         event.preventDefault();
-        alert(this.state.username);
+        alert(`Username: ${username}
+                         ${emailAdd}
+                         ${height}
+                         ${weight}
+                         ${hsex}
+                         ${goal}`);
+
+        const datapack = {
+            'username': username,
+            'emailAdd': emailAdd,
+            'height': height,
+            'weight': weight,
+            'hsex': hsex,
+            'goal': goal
+        };
 
     }
 
@@ -53,7 +68,8 @@ class AcctForm extends React.Component {
                     <input 
                     type='text' 
                     name='username' 
-                    value = {this.state.handleInputChange}
+                    onChange = {this.handleInputChange}
+                    value = {username}
                     />
                 </label><br />
                 <label>
@@ -61,15 +77,17 @@ class AcctForm extends React.Component {
                     <input 
                     type='text' 
                     name='emailAdd' 
-                    value={this.state.handleInputChange}
+                    value={emailAdd}
+                    onChange={this.handleInputChange}
                     />
                 </label><br />
                 <label>
                     Height: 
                     <input 
                     name='height' 
-                    type='number' 
-                    value={this.state.handleInputChange}
+                    type='number'
+                    value={height}
+                    onChange={this.handleInputChange}
                     />
                 </label><br />
                 <label>
@@ -77,15 +95,20 @@ class AcctForm extends React.Component {
                     <input 
                     name='weight' 
                     type='number' 
-                    value={this.state.handleInputChange}
+                    value={weight}
+                    onChange={this.handleInputChange}
                     />
                 </label><br />
                 <label>
                     Hormonal Sex: 
                     <select 
                     name='hsex'
-                    selected={this.state.handleInputChange}
+                    value={hsex}
+                    onChange={this.handleInputChange}
                     >
+                        <option>
+
+                        </option>
                         <option value="F">
                             Female
                         </option>
@@ -99,7 +122,8 @@ class AcctForm extends React.Component {
                     <input 
                     name='goal' 
                     type='number' 
-                    value={this.state.handleInputChange}
+                    value={goal}
+                    onChange={this.handleInputChange}
                     />
                 </label><br />
                 <input type='submit' />

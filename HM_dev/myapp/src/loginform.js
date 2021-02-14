@@ -3,25 +3,36 @@ import React, { Component } from 'react';
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            username: '',
+            passcode: ''
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({
+            ...this.state,
+            [name]: value
+        });
     }
 
     handleSubmit(event) {
-        alert('Your value ' + this.state.value);
         event.preventDefault();
+        const { username, passcode } = this.state;
+        alert(`submitted username ${username}`);
+
 
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         fetch("http://127.0.0.1:5000/login").then(console.log);
-    }
+    }*/
 
     render() {
         return (
@@ -29,11 +40,11 @@ class LoginForm extends React.Component {
                 <label>
                     Username:
                 </label>
-                <input type='text' name='username' value={this.state.value} onChange={this.handleChange} /><br />
+                <input type='text' name='username' value={this.state.username} onChange={this.handleChange} /><br />
                 <label>
                     Password:
                 </label>
-                <input type='text' name='passcode' />
+                <input type='text' name='passcode' value={this.state.passcode} onChange={this.handleChange} />
                 <input type='submit' value='Submit' />
             </form>
         );

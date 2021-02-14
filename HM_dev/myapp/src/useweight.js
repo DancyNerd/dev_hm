@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class UsageForm extends React.Component() {
+class UsageForm extends React.Component {
     constructor(props) {
         super(props);
 
