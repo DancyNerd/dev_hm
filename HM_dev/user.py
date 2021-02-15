@@ -61,8 +61,9 @@ class User:
             SET {column} = {value}
             """
             cursor.execute(sql)
-            return
+            return('DB updated')
 
+    @classmethod
     def login(self, username, password):
         if username and password:
             with sqlite3.connect(self.dbpath) as conn:

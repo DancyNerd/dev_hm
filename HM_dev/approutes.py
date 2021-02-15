@@ -1,6 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, redirect, url_for, flash, make_response
 from user import User
 from flask_cors import CORS
+from datetime import date
+import random
 
 '''
 LINUX USERS USE export FLASK_APP=approutes.py
@@ -51,17 +53,34 @@ def login():
     username = str(data.keys())
     passcode = str(data.values())
     jsondata = User.login(username, passcode)
-    return (request.jsonify(jsondata))
+    resp = make_response(render_template(...))
+    cookie_name = easybake(username)
+    cookie_val = chocolatechip(username)
+    resp.set_cookie(cookie_name, cookie_val, max_age=7200)
+    return (jsondata, resp)
+
+@app.route('/get-cookie')
+def get_cookie():
+    pass
+    
 
 @app.route('/u/<username>', methods=['POST'])
 def user(username):
     pass
 
-'''
 @app.route('/settings', method=['POST'])
 def change_settings():
-    pass
-'''
+    return('under construction')
+
+def easybake(username):
+    cookdate = str(date.today())
+    cookiename = "hi"+username+cookdate
+    return(cookiename)
+
+def chocolatechip(username):
+    session_id = str(random.randint(100, 999))
+    cookie_val = ''+username+':'+session_id
+    return(cookie_val)
 
 def error_list(errno):
     if errno==0:

@@ -25,7 +25,8 @@ class LoginForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const { username, passcode } = this.state;
-        alert(`submitted username ${username}`);
+        alert(`submitted username ${username}
+                        password ${passcode}`);
 
 
     }
@@ -35,16 +36,17 @@ class LoginForm extends React.Component {
     }*/
 
     render() {
+        const username = this.state.username;
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Username:
-                </label>
-                <input type='text' name='username' value={this.state.username} onChange={this.handleChange} /><br />
+                    <input type='text' name='username' value={username} onChange={this.handleChange} />
+                </label><br />
                 <label>
                     Password:
-                </label>
-                <input type='text' name='passcode' value={this.state.passcode} onChange={this.handleChange} />
+                    <input type='text' name='passcode' value={this.state.passcode} onChange={this.handleChange} />
+                </label><br />
                 <input type='submit' value='Submit' />
             </form>
         );

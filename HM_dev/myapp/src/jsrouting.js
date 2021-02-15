@@ -5,12 +5,20 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import MainForm from './mainform';
+import AcctForm from './accountform';
+import LoginForm from './loginform';
+import SettingForm from './settingsform';
+import UseMain from './usemain';
 
 function AppRouting() {
+
+    const username = 'fakeusername';
+
     return (
         <Router>
             <div>
-                <nav>
+                <nav align='left'>
                     <ul>
                         <li>
                             <Link to='/'>Main Page</Link>
@@ -22,27 +30,32 @@ function AppRouting() {
                             <Link to='/newuser'>Account Creation</Link>
                         </li>
                         <li>
-                            <Link to='/settings'>Settings</Link>
+                            <Link to='/u'>User Main Page</Link>
                         </li>
                         <li>
-                            <Link to='/u/<username'>User Main Page</Link>
+                            <Link to='/settings'>Settings</Link>
                         </li>
                     </ul>
                 </nav>
                 <Switch>
-                    <Route path='u/<username>'>
+                    <Route exact path='/u'>
+                        <h2>Hello!</h2>
                         <UseMain />
                     </Route>
                     <Route path='/login'>
+                        <h2>Login Here</h2>
                         <LoginForm />
                     </Route>
                     <Route path='/newuser'>
+                        <h2> Create New Account</h2>
                         <AcctForm />
                     </Route>
                     <Route path='/settings'>
-                        <Settings />
+                        <h2>Settings</h2>
+                        <SettingForm />
                     </Route>
                     <Route path='/'>
+                        <h2>HOME</h2>
                         <MainForm />
                     </Route>
                 </Switch>

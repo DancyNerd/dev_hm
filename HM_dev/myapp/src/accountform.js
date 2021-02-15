@@ -63,7 +63,7 @@ class AcctForm extends React.Component {
         const goal = this.state.goal;
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
+                <label align='left'><br />
                     Username:
                     <input 
                     type='text' 
@@ -71,8 +71,8 @@ class AcctForm extends React.Component {
                     onChange = {this.handleInputChange}
                     value = {username}
                     />
-                </label><br />
-                <label>
+                </label>
+                <label align='right'>
                     Email Address:
                     <input 
                     type='text' 
@@ -81,7 +81,7 @@ class AcctForm extends React.Component {
                     onChange={this.handleInputChange}
                     />
                 </label><br />
-                <label>
+                <label align='left'>
                     Height: 
                     <input 
                     name='height' 
@@ -89,8 +89,8 @@ class AcctForm extends React.Component {
                     value={height}
                     onChange={this.handleInputChange}
                     />
-                </label><br />
-                <label>
+                </label>
+                <label align='right'>
                     Weight: 
                     <input 
                     name='weight' 
@@ -99,7 +99,7 @@ class AcctForm extends React.Component {
                     onChange={this.handleInputChange}
                     />
                 </label><br />
-                <label>
+                <label align='left'>
                     Hormonal Sex: 
                     <select 
                     name='hsex'
@@ -116,8 +116,8 @@ class AcctForm extends React.Component {
                             Male
                         </option>
                     </select>
-                </label><br />
-                <label>
+                </label>
+                <label align='right'>
                     Goal: 
                     <input 
                     name='goal' 
@@ -126,7 +126,7 @@ class AcctForm extends React.Component {
                     onChange={this.handleInputChange}
                     />
                 </label><br />
-                <input type='submit' />
+                <input align='center' type='submit' />
 
             </form>
         );
