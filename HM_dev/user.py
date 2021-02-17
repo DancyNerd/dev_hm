@@ -93,7 +93,7 @@ class User:
     @staticmethod
     def create_pass():
         #make string?
-        passcode = random.randint(10000000000000, 99999999999999)
+        passcode = str(random.randint(10000000000000, 99999999999999))
         return passcode
     
     @staticmethod

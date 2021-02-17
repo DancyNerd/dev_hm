@@ -64,7 +64,7 @@ def get_cookie():
     pass
     
 
-@app.route('/u/<username>', methods=['POST'])
+@app.route('/u/', methods=['POST'])
 def user(username):
     pass
 

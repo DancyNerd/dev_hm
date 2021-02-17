@@ -39,6 +39,8 @@ class AcctForm extends React.Component {
                          ${hsex}
                          ${goal}`);
 
+        const floute = "127.0.0.1:5000/newuser";
+
         const datapack = {
             'username': username,
             'emailAdd': emailAdd,

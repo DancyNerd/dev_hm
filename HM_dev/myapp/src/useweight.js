@@ -24,6 +24,12 @@ class WeightForm extends React.Component {
         event.preventDefault();
         const { weight } = this.state;
         alert(`weight: ${weight}`);
+
+        const datapack = {
+            "weight": weight
+        };
+
+        const floute = "127.0.0.1:5000/"
     }
 
     render() {
@@ -37,7 +43,7 @@ class WeightForm extends React.Component {
                     onChange={this.handleChange}
                     />
                 </label>
-                <input type='submit' />
+                <input type='submit' /><br />
             </form>
         );
     }
