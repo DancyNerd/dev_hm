@@ -10,6 +10,7 @@ import AcctForm from './accountform';
 import LoginForm from './loginform';
 import SettingForm from './settingsform';
 import UseMain from './usemain';
+import './index.css';
 
 function AppRouting() {
 
@@ -39,7 +40,7 @@ function AppRouting() {
                 </nav>
                 <Switch>
                     <Route exact path='/u'>
-                        <h2>Hello!</h2>
+                        <h2>Welcome</h2>
                         <UseMain />
                     </Route>
                     <Route path='/login'>

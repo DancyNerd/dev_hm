@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import './index.css';
 import AppRouting from './jsrouting';
 
 function App() {
