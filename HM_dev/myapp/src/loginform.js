@@ -28,12 +28,33 @@ class LoginForm extends React.Component {
         alert(`submitted username ${username}
                         password ${passcode}`);
 
-        const floute = "127.0.0.1:5000/login"
+        const floute = "127.0.0.1:5000/login";
 
         const datapack = {
             "username": username,
             "password": passcode
         };
+
+        const postData = async(floute, datapack) => {
+
+            const response = await fetch(floute, {
+                method: 'POST', //login in Flask accepts POST
+                mode: 'cors', //CORS is enabled in Flask
+                cache: 'no-cache', //research this or at the very least ask the Wasteland
+                credentials: 'same-origin', //this should be right, but research at some point
+                headers: {
+                    'Content-Type': 'application/json' //I think this is right? Again, research.
+                },
+                redirect: 'follow', //Ask the Wasteland
+                referrerPolicy: 'no-referrer', //This should definitely be right, but could always verify.
+                body: JSON.stringify(datapack)
+            });
+            return response.json();
+        };
+
+        postData(floute, datapack).then(data => {
+            alert(data);
+        });
 
 
     }

@@ -14,7 +14,10 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return("I don't really exist yet, sorry.")
+    if get_cookie():
+        return('something')
+    else:
+        return('nothing')
 
 @app.route('/newuser', methods=['GET','POST'])
 def user_create():
@@ -27,8 +30,9 @@ def user_create():
     email = data.get("emailAdd")
     hsex = data.get("hsex")
     height = data.get("height")
-    weight = data.get("weight")
+    oweight = data.get("weight")
     goal = data.get("goal")
+    weight = weight_const(oweight)
     if i<5:
         var=0
         retmsg = error_list(var)
@@ -59,18 +63,38 @@ def login():
     resp.set_cookie(cookie_name, cookie_val, max_age=7200)
     return (jsondata, resp)
 
-@app.route('/get-cookie')
+@app.route('/getcookie', methods=['POST'])
 def get_cookie():
-    pass
+    cookiename = 'hi'
+    cookies = request.cookies.get(cookiename)
+    if cookies:
+        return True
+    else:
+        return False
     
 
-@app.route('/u/', methods=['POST'])
+@app.route('/u', methods=['POST'])
 def user(username):
     pass
 
-@app.route('/settings', method=['POST'])
+@app.route('/cal', methods=['POST'])
+def calories(calories):
+    return("API CALLS GO HERE")
+
+@app.route('/settings', methods=['POST', 'GET'])
 def change_settings():
     return('under construction')
+
+@app.route('/wsub', methods=['POST'])
+def weight_sub():
+    username='booty'
+    column = 'weight'
+    data = request.get_json()
+    oweight = data.values()
+    weight = weight_const(oweight)
+    User.update_user(username, column, weight)
+    return('Submitted')
+
 
 def easybake(username):
     cookdate = str(date.today())
@@ -81,6 +105,14 @@ def chocolatechip(username):
     session_id = str(random.randint(100, 999))
     cookie_val = ''+username+':'+session_id
     return(cookie_val)
+
+def weight_const(oweight):
+    cur_date = date.today()
+    nweight = {
+        oweight:cur_date
+    }
+    return nweight
+
 
 def error_list(errno):
     if errno==0:
@@ -96,4 +128,4 @@ def error_list(errno):
     return msg
 
 if __name__=="__main__":
-    user_create()
+    home()

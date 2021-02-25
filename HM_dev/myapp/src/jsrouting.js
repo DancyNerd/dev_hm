@@ -10,7 +10,6 @@ import AcctForm from './accountform';
 import LoginForm from './loginform';
 import SettingForm from './settingsform';
 import UseMain from './usemain';
-import './index.css';
 
 function AppRouting() {
 
@@ -31,7 +30,7 @@ function AppRouting() {
                             <Link to='/newuser'>Account Creation</Link>
                         </li>
                         <li>
-                            <Link to='/u'>User Main Page</Link>
+                            <Link to='/u'>User Page</Link>
                         </li>
                         <li>
                             <Link to='/settings'>Settings</Link>
@@ -40,7 +39,7 @@ function AppRouting() {
                 </nav>
                 <Switch>
                     <Route exact path='/u'>
-                        <h2>Welcome</h2>
+                        <h2>Hello!</h2>
                         <UseMain />
                     </Route>
                     <Route path='/login'>
@@ -48,7 +47,7 @@ function AppRouting() {
                         <LoginForm />
                     </Route>
                     <Route path='/newuser'>
-                        <h2> Create New Account</h2>
+                        <h2>Create New Account</h2>
                         <AcctForm />
                     </Route>
                     <Route path='/settings'>
@@ -56,15 +55,15 @@ function AppRouting() {
                         <SettingForm />
                     </Route>
                     <Route path='/'>
-                        <h2>HOME</h2>
+                        <h2>Home</h2>
                         <MainForm />
                     </Route>
                 </Switch>
             </div>
         </Router>
     )
-
 }
+
 
 
 

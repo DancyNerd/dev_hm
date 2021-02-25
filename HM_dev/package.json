@@ -28,6 +28,7 @@
   "homepage": "https://github.com/DancyNerd/dev_hm#readme",
   "dependencies": {
     "create-react-app": "^4.0.2",
-    "node": "^15.8.0"
+    "node": "^15.8.0",
+    "react-native": "^0.63.4"
   }
 }

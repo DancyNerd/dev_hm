@@ -30,12 +30,16 @@ class SettingForm extends React.Component {
         alert("This doesn't work yet, sorry.");
     }
 
+    componentDidMount() {
+        fetch("http://127.0.0.1:5000/settings").then(console.log);
+    }
+
     render() {
 
         const hsex = this.state.hsex;
-        const emailAdd = this.state.emailAdd;
         const goal = this.state.goal;
         const username = this.state.username;
+        const emailAdd = this.state.emailAdd;
 
         return(
             <form onSubmit={this.handleSubmit}>
@@ -70,7 +74,7 @@ class SettingForm extends React.Component {
                     Change Email Address
                     <input 
                     type='text'
-                    name='username'
+                    name='emailAdd'
                     onChange={this.handleInputChange}
                     value={emailAdd}
                     />

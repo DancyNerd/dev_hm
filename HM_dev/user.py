@@ -26,9 +26,6 @@ class User:
         passcode = self.create_pass()
         self.password = self.passhash(passcode)
 
-        nweight = self.append_weight(self.weight)
-        self.weight = nweight
-
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
@@ -39,8 +36,10 @@ class User:
             cursor.execute(sql, values)
             upc = {self.username:passcode}
             return (upc)
-
-    def update_user(self, column, uservalue):
+            
+    @classmethod
+    def update_user(self, username, column, uservalue):
+        self.username = username
         #take in keyword args or dict and insert into strvar
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
@@ -50,7 +49,7 @@ class User:
             SET {column} = {uservalue}
             """
             cursor.execute(sql)
-            return
+            return ('Updated')
     
     def update_calories(self, username, column, value):
         with sqlite3.connect(self.dbpath) as conn:
@@ -111,14 +110,9 @@ class User:
         shash.update(rando.encode())
         return shash.hexdigest()[:15]
 
-    def append_weight(self, weight):
-        curdt = date.today()
-        strweight = str(weight)
-        dicweight = {strweight:curdt}
-        return dicweight
-
     def reset_lvl(self):
+        username = 'booty'
         level = 1
         column = "level"
-        self.update_user(column, level)
+        self.update_user(username, column, level)
         return

@@ -29,7 +29,28 @@ class WeightForm extends React.Component {
             "weight": weight
         };
 
-        const floute = "127.0.0.1:5000/"
+        const floute = "127.0.0.1:5000/u";
+
+        const postData = async(floute, datapack) => {
+            
+            const response = await fetch(floute, {
+                method: 'POST', //login in Flask accepts POST
+                mode: 'cors', //CORS is enabled in Flask
+                cache: 'no-cache', //Might be for the best tho
+                credentials: 'same-origin', //is it really tho
+                headers: {
+                    'Content-Type': 'application/json' //should be right
+                },
+                redirect: 'follow', //FIGURE THIS ONE OUT PLS
+                body: JSON.stringify(datapack)
+            });
+            return response.json();
+        };
+
+        postData(floute, datapack).then(data => {
+            alert(data);
+        });
+
     }
 
     render() {

@@ -50,6 +50,26 @@ class AcctForm extends React.Component {
             'goal': goal
         };
 
+        const postData = async(floute, datapack) => {
+            const response = await fetch(floute, {
+                method: 'POST', //login in Flask accepts POST
+                mode: 'cors', //CORS is enabled in Flask
+                cache: 'no-cache', //rsrch
+                credentials: 'same-origin', //rsrch
+                headers: {
+                    'Content-Type': 'application/json' //rsrch
+                },
+                redirect: 'follow', //rsrch
+                referrerPolicy: 'no-referrer', //rsrch
+                body: JSON.stringify(datapack)
+            });
+            return response.json();
+        };
+
+        postData(floute, datapack).then(data => {
+            alert(data);
+        });
+
     }
 
     /*componentDidMount() {

@@ -1,3 +1,7 @@
+
+
+#BMR determination equations from calculator.net/calorie-calculator.html
+
 def get_weight(weight):
     nweight = str(weight.keys())
     return nweight
