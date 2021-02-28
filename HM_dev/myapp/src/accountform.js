@@ -16,6 +16,7 @@ class AcctForm extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.AcctCreated = this.AcctCreated.bind(this);
 
     }
 
@@ -69,7 +70,7 @@ class AcctForm extends React.Component {
             'goal':`${goal}`
         })
         .then(function (response) {
-            AcctCreated(response.data);
+            this.AcctCreated(response.data);
         })
         .catch(function (error) {
             console.log(error);
