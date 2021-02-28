@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AcctSuccess from './acctcreated';
 
 class AcctForm extends React.Component {
     constructor(props) {
@@ -28,6 +29,12 @@ class AcctForm extends React.Component {
             [name]: value
         });
         
+    }
+
+    AcctCreated(data) {
+        this.setState({
+            newAccountData: data
+        });
     }
 
     handleSubmit(event) {
@@ -61,7 +68,9 @@ class AcctForm extends React.Component {
             'hsex': `${hsex}`,
             'goal':`${goal}`
         })
-        .then(r=>console.log(r.data))
+        .then(function (response) {
+            AcctCreated(response.data);
+        })
         .catch(function (error) {
             console.log(error);
         });
@@ -80,73 +89,76 @@ class AcctForm extends React.Component {
         const hsex = this.state.hsex;
         const goal = this.state.goal;
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label align='left'><br />
-                    Username:
-                    <input 
-                    type='text' 
-                    name='username' 
-                    onChange = {this.handleInputChange}
-                    value = {username}
-                    />
-                </label>
-                <label align='right'>
-                    Email Address:
-                    <input 
-                    type='text' 
-                    name='emailAdd' 
-                    value={emailAdd}
-                    onChange={this.handleInputChange}
-                    />
-                </label><br />
-                <label align='left'>
-                    Height: 
-                    <input 
-                    name='height' 
-                    type='number'
-                    value={height}
-                    onChange={this.handleInputChange}
-                    />
-                </label>
-                <label align='right'>
-                    Weight: 
-                    <input 
-                    name='weight' 
-                    type='number' 
-                    value={weight}
-                    onChange={this.handleInputChange}
-                    />
-                </label><br />
-                <label align='left'>
-                    Hormonal Sex: 
-                    <select 
-                    name='hsex'
-                    value={hsex}
-                    onChange={this.handleInputChange}
-                    >
-                        <option>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label align='left'><br />
+                        Username:
+                        <input 
+                        type='text' 
+                        name='username' 
+                        onChange = {this.handleInputChange}
+                        value = {username}
+                        />
+                    </label>
+                    <label align='right'>
+                        Email Address:
+                        <input 
+                        type='text' 
+                        name='emailAdd' 
+                        value={emailAdd}
+                        onChange={this.handleInputChange}
+                        />
+                    </label><br />
+                    <label align='left'>
+                        Height: 
+                        <input 
+                        name='height' 
+                        type='number'
+                        value={height}
+                        onChange={this.handleInputChange}
+                        />
+                    </label>
+                    <label align='right'>
+                        Weight: 
+                        <input 
+                        name='weight' 
+                        type='number' 
+                        value={weight}
+                        onChange={this.handleInputChange}
+                        />
+                    </label><br />
+                    <label align='left'>
+                        Hormonal Sex: 
+                        <select 
+                        name='hsex'
+                        value={hsex}
+                        onChange={this.handleInputChange}
+                        >
+                            <option>
 
-                        </option>
-                        <option value="F">
-                            Female
-                        </option>
-                        <option value="M">
-                            Male
-                        </option>
-                    </select>
-                </label>
-                <label align='right'>
-                    Goal: 
-                    <input 
-                    name='goal' 
-                    type='number' 
-                    value={goal}
-                    onChange={this.handleInputChange}
-                    />
-                </label><br />
-                <input align='center' type='submit' />
+                            </option>
+                            <option value="F">
+                                Female
+                            </option>
+                            <option value="M">
+                                Male
+                            </option>
+                        </select>
+                    </label>
+                    <label align='right'>
+                        Goal: 
+                        <input 
+                        name='goal' 
+                        type='number' 
+                        value={goal}
+                        onChange={this.handleInputChange}
+                        />
+                    </label><br />
+                    <input align='center' type='submit' />
 
-            </form>
+                </form>
+                {newAccountData && <AcctSuccess data={this.state.newAccountData} />}
+            </div>
         );
     }
 }

@@ -5,8 +5,8 @@ def extract(weight):
     dbdt = str(weight.values())
     return dbdt
 
-def streaks(weight, streak, username):
-    dbdt=extract(weight)
+def streaks(lentry, streak, username):
+    dbdt=lentry
     etime=dtcheck(dbdt)
     if etime == 1:
         streak += 1
@@ -17,7 +17,7 @@ def streaks(weight, streak, username):
         streak = 0
     return streak
 
-def days_logged(streak, weight_list):
+def days_logged(streak, lentry_list):
     pass
 
 def dtcheck(db_datetime):

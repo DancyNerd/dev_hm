@@ -28,13 +28,26 @@ class SettingForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         alert("This doesn't work yet, sorry.");
-    }
 
+        /*
+        const floute="http://127.0.0.1:5000/settings";
+        axios.post(floute, {
+            `${evnt}`:`${evntvalue}
+        })
+        .then(r=>console.log(r.data))
+        .catch(function (error) {
+            console.log(error);
+        });
+        */
+    }
+    
+    /*
     componentDidMount() {
         fetch("http://127.0.0.1:5000/settings").then(r=>r.text()).then(function (text) {
             alert(`${text}`);
         });
     }
+    */
 
     render() {
 
