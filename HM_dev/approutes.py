@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, make_response
+from flask import Flask, request, render_template, redirect, url_for, flash, make_response, jsonify
 from user import User
 from flask_cors import CORS
 from datetime import date
@@ -19,8 +19,9 @@ def home():
     else:
         return('nothing')
 
-@app.route('/newuser', methods=['GET','POST'])
+@app.route('/newuser', methods=['POST', 'GET'])
 def user_create():
+
     data = request.get_json()
     keylist = data.keys()
     i=0
@@ -30,20 +31,23 @@ def user_create():
     email = data.get("emailAdd")
     hsex = data.get("hsex")
     height = data.get("height")
-    oweight = data.get("weight")
+    weight = data.get("weight")
     goal = data.get("goal")
-    weight = weight_const(oweight)
-    if i<5:
+    lentry = date.today()
+    if i<6:
         var=0
         retmsg = error_list(var)
-    elif i>5:
+    elif i>6:
         var=1
         retmsg = error_list(var)
     else:
-        newuser = User(username, email, hsex, height, weight, goal)
+        newuser = User(username, email, hsex, height, weight, goal, lentry)
         retmsg = newuser.insert()
 
-    return request.jsonify(retmsg)
+    return jsonify(retmsg)
+
+    
+    
 
 '''
 @app.route('/created', method=['POST'])
@@ -58,19 +62,19 @@ def login():
     passcode = str(data.values())
     jsondata = User.login(username, passcode)
     resp = make_response(render_template(...))
-    cookie_name = easybake(username)
+    cookie_name = 'hi_hm_dev'
     cookie_val = chocolatechip(username)
     resp.set_cookie(cookie_name, cookie_val, max_age=7200)
     return (jsondata, resp)
 
 @app.route('/getcookie', methods=['POST'])
 def get_cookie():
-    cookiename = 'hi'
-    cookies = request.cookies.get(cookiename)
+    #cookiename = "hm_dev_cookie"
+    cookies = request.cookies.get('username')
     if cookies:
-        return True
+        return cookies
     else:
-        return False
+        return('ERROR')
     
 
 @app.route('/u', methods=['POST'])
@@ -87,31 +91,23 @@ def change_settings():
 
 @app.route('/wsub', methods=['POST'])
 def weight_sub():
-    username='booty'
+    username = get_cookie()
     column = 'weight'
     data = request.get_json()
-    oweight = data.values()
-    weight = weight_const(oweight)
-    User.update_user(username, column, weight)
+    weight = data.values()
+    lentry = date.today()
+    User.update_user(username, column, weight, lentry)
     return('Submitted')
 
 
 def easybake(username):
-    cookdate = str(date.today())
-    cookiename = "hi"+username+cookdate
+    #cookdate = str(date.today())
+    cookiename = "hm_dev_cookie"
     return(cookiename)
 
 def chocolatechip(username):
-    session_id = str(random.randint(100, 999))
-    cookie_val = ''+username+':'+session_id
+    cookie_val = 'username:'+username
     return(cookie_val)
-
-def weight_const(oweight):
-    cur_date = date.today()
-    nweight = {
-        oweight:cur_date
-    }
-    return nweight
 
 
 def error_list(errno):

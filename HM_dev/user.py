@@ -8,7 +8,7 @@ from schema import schema
 #create a separate way to track session_id
 class User:
     dbpath = "hmedev.db"
-    def __init__(self, username, email, height, weight, hsex, goal, password=0, streakcount=0, level=1, plateau=0):
+    def __init__(self, username, email, height, weight, hsex, goal, lentry, password=0, streakcount=0, level=1, plateau=0):
         self.username = username
         self.email = email
         self.password = password
@@ -19,26 +19,28 @@ class User:
         self.plateau = plateau
         self.goal = goal
         self.streakcount = streakcount
+        self.lentry = lentry
 
     #add new users to db
     def insert(self):
 
         passcode = self.create_pass()
+        print(passcode)
         self.password = self.passhash(passcode)
 
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             INSERT INTO users (
-                username, email, password, height, weight, level, plateau, goal, streakcount, level, plateau
-            ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-            values = (self.username, self.email, self.password, self.height, self.weight, self.level, self.plateau, self.goal, self.streakcount)
+                username, email, password, height, weight, hsex, goal, lentry, streakcount, level, plateau
+            ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+            values = (self.username, self.email, self.password, self.height, self.weight, self.hsex, self.goal, self.lentry, self.streakcount, self.level, self.plateau)
             cursor.execute(sql, values)
             upc = {self.username:passcode}
             return (upc)
             
     @classmethod
-    def update_user(self, username, column, uservalue):
+    def update_user(self, username, column, uservalue, lentry):
         self.username = username
         #take in keyword args or dict and insert into strvar
         with sqlite3.connect(self.dbpath) as conn:
@@ -46,7 +48,8 @@ class User:
             sql = f"""
             UPDATE users
             SELECT * WHERE {self.username}
-            SET {column} = {uservalue}
+            SET {column} = {uservalue},
+            SET lentry = {lentry}
             """
             cursor.execute(sql)
             return ('Updated')
@@ -114,5 +117,6 @@ class User:
         username = 'booty'
         level = 1
         column = "level"
-        self.update_user(username, column, level)
+        lentry = date.today()
+        self.update_user(username, column, level, lentry)
         return

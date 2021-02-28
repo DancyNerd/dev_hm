@@ -12,10 +12,10 @@ class UseMain extends React.Component {
 
     render() {
         return (
-            <p>
+            <div>
                 <WeightForm />
                 <CaloriesForm />
-            </p>
+            </div>
         )
     }
 }

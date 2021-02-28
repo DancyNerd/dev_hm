@@ -31,7 +31,9 @@ class SettingForm extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://127.0.0.1:5000/settings").then(console.log);
+        fetch("http://127.0.0.1:5000/settings").then(r=>r.text()).then(function (text) {
+            alert(`${text}`);
+        });
     }
 
     render() {

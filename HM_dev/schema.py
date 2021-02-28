@@ -36,15 +36,15 @@ def schema(dbpath="hmedev.db"):
         cursor=conn.cursor()
         cursor.execute("""
         CREATE TABLE users (
-        pk INTEGER PRIMARY KEY AUTOINCREMENT,
         username VARCHAR(16) UNIQUE NOT NULL,
         email VARCHAR UNIQUE NOT NULL,
         password VARCHAR NOT NULL,
         hsex VARCHAR(2),
         height REAL(6),
-        weight VARCHAR(20),
+        weight BLOB(20),
         level INTEGER,
         goal REAL(6),
+        lentry DATE,
         streakcount INTEGER, 
         plateau INTEGER
         )""")

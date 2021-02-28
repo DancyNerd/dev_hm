@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class AcctForm extends React.Component {
     constructor(props) {
@@ -39,8 +40,9 @@ class AcctForm extends React.Component {
                          ${hsex}
                          ${goal}`);
 
-        const floute = "127.0.0.1:5000/newuser";
+        const floute = "http://127.0.0.1:5000/newuser";
 
+        /*
         const datapack = {
             'username': username,
             'emailAdd': emailAdd,
@@ -49,25 +51,19 @@ class AcctForm extends React.Component {
             'hsex': hsex,
             'goal': goal
         };
+        */
 
-        const postData = async(floute, datapack) => {
-            const response = await fetch(floute, {
-                method: 'POST', //login in Flask accepts POST
-                mode: 'cors', //CORS is enabled in Flask
-                cache: 'no-cache', //rsrch
-                credentials: 'same-origin', //rsrch
-                headers: {
-                    'Content-Type': 'application/json' //rsrch
-                },
-                redirect: 'follow', //rsrch
-                referrerPolicy: 'no-referrer', //rsrch
-                body: JSON.stringify(datapack)
-            });
-            return response.json();
-        };
-
-        postData(floute, datapack).then(data => {
-            alert(data);
+        axios.post(floute, {
+            'username': `${username}`,
+            'emailAdd': `${emailAdd}`,
+            'height': `${height}`,
+            'weight': `${weight}`,
+            'hsex': `${hsex}`,
+            'goal':`${goal}`
+        })
+        .then(r=>console.log(r.data))
+        .catch(function (error) {
+            console.log(error);
         });
 
     }
