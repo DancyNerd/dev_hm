@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-function AcctSuccess(data) {
+function AcctCreated(data) {
     return (
         <h4>
             Congratulations! Your account has successfully been created.<br />
@@ -10,4 +10,4 @@ function AcctSuccess(data) {
     );
 }
 
-export default AcctSuccess;
+export default AcctCreated;

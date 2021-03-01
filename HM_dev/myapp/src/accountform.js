@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AcctSuccess from './acctcreated';
+import AcctCreated from './acctcreated';
 
 class AcctForm extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class AcctForm extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.AcctCreated = this.AcctCreated.bind(this);
+        this.AcctSuccess = this.AcctSuccess.bind(this);
 
     }
 
@@ -32,9 +32,10 @@ class AcctForm extends React.Component {
         
     }
 
-    AcctCreated(data) {
+    AcctSuccess(useris, passwordis) {
         this.setState({
-            newAccountData: data
+            newAccountUser: useris,
+            newAccountPW: passwordis
         });
     }
 
@@ -69,8 +70,10 @@ class AcctForm extends React.Component {
             'hsex': `${hsex}`,
             'goal':`${goal}`
         })
-        .then(function (response) {
-            this.AcctCreated(response.data);
+        .then((response) => {
+                var useris = response.data.username;
+                var passwordis = response.data.password;
+                this.AcctSuccess(useris, passwordis);
         })
         .catch(function (error) {
             console.log(error);
@@ -158,7 +161,7 @@ class AcctForm extends React.Component {
                     <input align='center' type='submit' />
 
                 </form>
-                {newAccountData && <AcctSuccess data={this.state.newAccountData} />}
+                {this.state.newAccountUser && this.state.newAccountPW && <AcctCreated theuser={this.state.newAccountUser} thepassword={this.state.newAccountPW} />}
             </div>
         );
     }
