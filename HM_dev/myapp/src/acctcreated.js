@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 
-function AcctCreated(data) {
+function AcctCreated(theuser, thepassword) {
     return (
         <h4>
             Congratulations! Your account has successfully been created.<br />
-            {data}
+            {theuser}, {thepassword}
         </h4>
     );
 }
