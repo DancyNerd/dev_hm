@@ -71,9 +71,16 @@ class AcctForm extends React.Component {
             'goal':`${goal}`
         })
         .then((response) => {
-                var useris = response.data.username;
-                var passwordis = response.data.password;
-                this.AcctSuccess(useris, passwordis);
+                if (response.data.Error) {
+                    var useris = response.data.Error;
+                    var passwordis = "No passcode generated";
+                    this.AcctSuccess(useris, passwordis);
+                }
+                else {
+                    var useris = response.data.username;
+                    var passwordis = response.data.password;
+                    this.AcctSuccess(useris, passwordis);
+                }
         })
         .catch(function (error) {
             console.log(error);

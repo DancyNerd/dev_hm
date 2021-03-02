@@ -10,36 +10,53 @@ import AcctForm from './accountform';
 import LoginForm from './loginform';
 import SettingForm from './settingsform';
 import UseMain from './usemain';
+import './index.css';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function AppRouting() {
 
-    const username = 'fakeusername';
+    //const username = 'fakeusername';
 
     return (
         <Router>
             <div>
+                <Nav variant="pills" align="left">
+                <NavDropdown title="Menu" id="nav-dropdown">
                 <nav align='left'>
                     <ul>
+                        <Nav.Item>
                         <li>
-                            <Link to='/'>Main Page</Link>
+                            <NavDropdown.Item><Link to='/'>Main Page</Link></NavDropdown.Item>
                         </li>
+                        </Nav.Item>
+                        <Nav.Item>
                         <li>
-                            <Link to='/login'>Login</Link>
+                            <NavDropdown.Item><Link to='/login'>Login</Link></NavDropdown.Item>
                         </li>
+                        </Nav.Item>
+                        <Nav.Item>
                         <li>
-                            <Link to='/newuser'>Account Creation</Link>
+                            <NavDropdown.Item><Link to='/newuser'>Account Creation</Link></NavDropdown.Item>
                         </li>
+                        </Nav.Item>
+                        <Nav.Item>
                         <li>
-                            <Link to='/u'>User Page</Link>
+                            <NavDropdown.Item><Link to='/u'>User Main Page</Link></NavDropdown.Item>
                         </li>
+                        </Nav.Item>
+                        <Nav.Item>
                         <li>
-                            <Link to='/settings'>Settings</Link>
+                            <NavDropdown.Item><Link to='/settings'>Settings</Link></NavDropdown.Item>
                         </li>
+                        </Nav.Item>
                     </ul>
                 </nav>
+                </NavDropdown>
+                </Nav>
                 <Switch>
                     <Route exact path='/u'>
-                        <h2>Hello!</h2>
+                        <h2>Welcome</h2>
                         <UseMain />
                     </Route>
                     <Route path='/login'>
@@ -47,7 +64,7 @@ function AppRouting() {
                         <LoginForm />
                     </Route>
                     <Route path='/newuser'>
-                        <h2>Create New Account</h2>
+                        <h2> Create New Account</h2>
                         <AcctForm />
                     </Route>
                     <Route path='/settings'>
@@ -55,15 +72,15 @@ function AppRouting() {
                         <SettingForm />
                     </Route>
                     <Route path='/'>
-                        <h2>Home</h2>
+                        <h2>HOME</h2>
                         <MainForm />
                     </Route>
                 </Switch>
             </div>
         </Router>
     )
-}
 
+}
 
 
 

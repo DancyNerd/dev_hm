@@ -34,7 +34,7 @@ def user_create():
     weight = data.get("weight")
     goal = data.get("goal")
     lentry = date.today()
-    '''
+
     if i<6:
         var=0
         retmsg = error_list(var)
@@ -45,8 +45,6 @@ def user_create():
         newuser = User(username, email, hsex, height, weight, goal, lentry)
         retmsg = newuser.insert()
 
-    '''
-    retmsg = {'username':username, 'password':email}
     return jsonify(retmsg)
 
     

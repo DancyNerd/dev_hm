@@ -36,7 +36,7 @@ class User:
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             values = (self.username, self.email, self.password, self.height, self.weight, self.hsex, self.goal, self.lentry, self.streakcount, self.level, self.plateau)
             cursor.execute(sql, values)
-            upc = {self.username:passcode}
+            upc = {"username":self.username, "password":passcode}
             return (upc)
             
     @classmethod

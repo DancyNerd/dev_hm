@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 
-function AcctCreated(theuser, thepassword) {
+function AcctCreated({ theuser, thepassword }) {
     return (
         <h4>
-            Congratulations! Your account has successfully been created.<br />
+            Below you will find your username and password.<br />
             {theuser}, {thepassword}
         </h4>
     );
