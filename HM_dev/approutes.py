@@ -58,15 +58,19 @@ def create_success():
 
 @app.route('/login', methods=['POST'])
 def login():
+    print('made it to login')
     data = request.get_json()
     username = str(data.keys())
     passcode = str(data.values())
     jsondata = User.login(username, passcode)
+    '''
     resp = make_response(render_template(...))
     cookie_name = 'hi_hm_dev'
     cookie_val = chocolatechip(username)
     resp.set_cookie(cookie_name, cookie_val, max_age=7200)
     return (jsondata, resp)
+    '''
+    return(jsonify(jsondata))
 
 @app.route('/getcookie', methods=['POST'])
 def get_cookie():

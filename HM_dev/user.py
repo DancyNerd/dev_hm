@@ -67,6 +67,9 @@ class User:
 
     @classmethod
     def login(self, username, password):
+        opassword = password
+        password = self.passhash(opassword)
+        print(password)
         if username and password:
             with sqlite3.connect(self.dbpath) as conn:
                 cursor = conn.cursor()
@@ -75,9 +78,9 @@ class User:
                 """
                 cursor.execute(sql)
                 
-                jsondata = {"Cookie ID":username}
+                jsondata = {"username":username, "islogged":True}
         else:
-            jsondata = {"Error":"sorry no"}
+            jsondata = {"Error":"ERROR:", "message":"Username or password incorrect."}
 
             return (jsondata)
 
