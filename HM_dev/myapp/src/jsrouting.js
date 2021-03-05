@@ -13,6 +13,7 @@ import UseMain from './usemain';
 import './index.css';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { User } from "./usemain";
 
 function AppRouting() {
 
@@ -55,7 +56,7 @@ function AppRouting() {
                 </NavDropdown>
                 </Nav>
                 <Switch>
-                    <Route exact path='/u'>
+                    <Route path='/u'>
                         <h2>Welcome</h2>
                         <UseMain />
                     </Route>
@@ -76,6 +77,7 @@ function AppRouting() {
                         <MainForm />
                     </Route>
                 </Switch>
+
             </div>
         </Router>
     )

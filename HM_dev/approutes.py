@@ -3,6 +3,7 @@ from user import User
 from flask_cors import CORS
 from datetime import date
 import random
+from flask_bcrypt import Bcrypt
 
 '''
 LINUX USERS USE export FLASK_APP=approutes.py
@@ -11,6 +12,7 @@ WINDOWS USERS USE set FLASK_APP=approutes.py
 
 app = Flask(__name__)
 CORS(app)
+flypt = Bcrypt(app)
 
 @app.route('/')
 def home():
@@ -27,13 +29,17 @@ def user_create():
     i=0
     for _ in keylist:
         i+=1
-    username=data.get("username")
+    username = data.get("username")
     email = data.get("emailAdd")
     hsex = data.get("hsex")
     height = data.get("height")
     weight = data.get("weight")
     goal = data.get("goal")
     lentry = date.today()
+    passcode = create_pass()
+    print("USERNAME: "+username+", PASSCODE: "+passcode)
+    #password = phasher(passcode)
+    password = passcode
 
     if i<6:
         var=0
@@ -42,8 +48,16 @@ def user_create():
         var=1
         retmsg = error_list(var)
     else:
-        newuser = User(username, email, hsex, height, weight, goal, lentry)
-        retmsg = newuser.insert()
+        newuser = User(username, email, hsex, height, weight, goal, lentry, password)
+        retsig = newuser.insert()
+        if retsig==True:
+            retmsg = {
+                "username":username,
+                "password":passcode
+            }
+        else:
+            errno = 3
+            retmsg = error_list(errno)
 
     return jsonify(retmsg)
 
@@ -60,9 +74,12 @@ def create_success():
 def login():
     print('made it to login')
     data = request.get_json()
-    username = str(data.keys())
-    passcode = str(data.values())
-    jsondata = User.login(username, passcode)
+    username = str(data.get('username'))
+    passcode = str(data.get('password'))
+    #password = phasher(passcode)
+    password = passcode
+    print("USERNAME: "+username+", PASSCODE: "+passcode)
+    inserted = User.login(username, password)
     '''
     resp = make_response(render_template(...))
     cookie_name = 'hi_hm_dev'
@@ -70,6 +87,15 @@ def login():
     resp.set_cookie(cookie_name, cookie_val, max_age=7200)
     return (jsondata, resp)
     '''
+    if inserted==True:
+        jsondata = {
+            'username':username
+        }
+    else:
+        jsondata = {
+            "Error": "Error on account lookup",
+            "message":"could not locate username/password combination"
+    }
     return(jsonify(jsondata))
 
 @app.route('/getcookie', methods=['POST'])
@@ -104,6 +130,13 @@ def weight_sub():
     User.update_user(username, column, weight, lentry)
     return('Submitted')
 
+def create_pass():
+    passcode = str(random.randint(1000, 9999))
+    return passcode
+
+def phasher(password):
+    phash = flypt.generate_password_hash(password).decode('utf-8')
+    return phash
 
 def easybake(username):
     #cookdate = str(date.today())

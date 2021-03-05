@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import UseMain from './usemain';
 
 class WeightForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {weight: ''};
+        this.state = {
+            weight: '',
+            useris: props.useris
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -54,10 +58,11 @@ class WeightForm extends React.Component {
     }
 
     render() {
+        const useris =  this.state.useris;
         return(
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Weight:
+                    {useris} Weight:
                     <input name='weight' 
                     type='number' 
                     value= {this.state.weight} 

@@ -8,7 +8,7 @@ from schema import schema
 #create a separate way to track session_id
 class User:
     dbpath = "hmedev.db"
-    def __init__(self, username, email, height, weight, hsex, goal, lentry, password=0, streakcount=0, level=1, plateau=0):
+    def __init__(self, username, email, height, weight, hsex, goal, lentry, password, streakcount=0, level=1, plateau=0):
         self.username = username
         self.email = email
         self.password = password
@@ -24,10 +24,6 @@ class User:
     #add new users to db
     def insert(self):
 
-        passcode = self.create_pass()
-        print(passcode)
-        self.password = self.passhash(passcode)
-
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
@@ -36,7 +32,7 @@ class User:
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             values = (self.username, self.email, self.password, self.height, self.weight, self.hsex, self.goal, self.lentry, self.streakcount, self.level, self.plateau)
             cursor.execute(sql, values)
-            upc = {"username":self.username, "password":passcode}
+            upc = True
             return (upc)
             
     @classmethod
@@ -67,22 +63,20 @@ class User:
 
     @classmethod
     def login(self, username, password):
-        opassword = password
-        password = self.passhash(opassword)
-        print(password)
+        username = username
+        password = password
         if username and password:
+            inserted = True
             with sqlite3.connect(self.dbpath) as conn:
                 cursor = conn.cursor()
                 sql = f"""
-                SELECT * WHERE {username} and {password}
+                SELECT * FROM users WHERE username=? and password=?
                 """
-                cursor.execute(sql)
-                
-                jsondata = {"username":username, "islogged":True}
+                cursor.execute((sql),(username, password))  
         else:
-            jsondata = {"Error":"ERROR:", "message":"Username or password incorrect."}
+            inserted = False
 
-            return (jsondata)
+        return (inserted)
 
     #create Levels and return current level
     def new_level(self, level, plateau, goal):
@@ -94,12 +88,6 @@ class User:
             sql = """SELECT * FROM users WHERE session_id=?"""
             cursor.execute(sql, (session_id))
             return
-
-    @staticmethod
-    def create_pass():
-        #make string?
-        passcode = str(random.randint(10000000000000, 99999999999999))
-        return passcode
     
     @staticmethod
     def passhash(password):

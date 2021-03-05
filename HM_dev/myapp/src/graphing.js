@@ -15,6 +15,8 @@ class UseGraph extends React.Component() {
                 <XAxis />
             </LineChart>
         );
+
+        return(RenderLineChart);
     }
 }
 
