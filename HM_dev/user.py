@@ -4,6 +4,7 @@ import os
 import hashlib
 from datetime import date
 from schema import schema
+from dtfuncs import streaks
 
 #create a separate way to track session_id
 class User:
@@ -48,7 +49,33 @@ class User:
             WHERE username=?
             """
             cursor.execute((sql), (weight, lentry, username))
-        return ('Updated')
+        return ('Weight Updated')
+
+    @classmethod
+    def update_streak(self, username, lentry):
+        self.username = username
+        with sqlite3.connect(self.dbpath) as conn:
+            cursor = conn.cursor()
+            sql = f"""
+            SELECT streakcount, lentry FROM users
+            WHERE username = ?
+            """
+            cursor.execute((sql), (username,))
+        for row in cursor.fetchall():
+            streak = int(row[0])
+            lentry = row[1]
+        nstreak = streaks(lentry, streak, username)
+        if nstreak != streak:
+            with sqlite3.connect(self.dbpath) as conn:
+                cursor = conn.cursor()
+                sql = f"""
+                UPDATE users
+                SET streak=?
+                WHERE username=?
+                """
+                cursor.execute((sql), (nstreak, username))
+            streak=nstreak
+        return streak
     
     def update_calories(self, username, column, value):
         with sqlite3.connect(self.dbpath) as conn:

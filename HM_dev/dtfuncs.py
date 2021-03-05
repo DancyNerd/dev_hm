@@ -1,5 +1,4 @@
 from datetime import date, timedelta
-from user import User
 
 def extract(weight):
     dbdt = str(weight.values())
@@ -10,9 +9,6 @@ def streaks(lentry, streak, username):
     etime=dtcheck(dbdt)
     if etime == 1:
         streak += 1
-    elif etime >= 14:
-        User.reset_lvl(username)
-        streak=0
     else:
         streak = 0
     return streak

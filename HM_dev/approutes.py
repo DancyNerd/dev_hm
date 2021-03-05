@@ -126,9 +126,11 @@ def weight_sub():
     username = data.get('useris')
     weight = data.get('weight')
     lentry = date.today()
-    msg = User.update_weight(username, weight, lentry)
+    wmsg = User.update_weight(username, weight, lentry)
+    smsg = User.update_streak(username, lentry)
     retmsg = {
-        'message':msg
+        'message':wmsg,
+        'streak': smsg
     }
     return(jsonify(retmsg))
 
