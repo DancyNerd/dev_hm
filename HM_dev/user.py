@@ -32,23 +32,23 @@ class User:
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             values = (self.username, self.email, self.password, self.height, self.weight, self.hsex, self.goal, self.lentry, self.streakcount, self.level, self.plateau)
             cursor.execute(sql, values)
-            upc = True
-            return (upc)
+        upc = True
+        return (upc)
             
     @classmethod
-    def update_user(self, username, column, uservalue, lentry):
+    def update_weight(self, username, weight, lentry):
         self.username = username
         #take in keyword args or dict and insert into strvar
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             UPDATE users
-            SELECT * WHERE {self.username}
-            SET {column} = {uservalue},
-            SET lentry = {lentry}
+            SET weight=?,
+            lentry=?
+            WHERE username=?
             """
-            cursor.execute(sql)
-            return ('Updated')
+            cursor.execute((sql), (weight, lentry, username))
+        return ('Updated')
     
     def update_calories(self, username, column, value):
         with sqlite3.connect(self.dbpath) as conn:
@@ -104,10 +104,10 @@ class User:
         shash.update(rando.encode())
         return shash.hexdigest()[:15]
 
-    def reset_lvl(self):
+    '''def reset_lvl(self):
         username = 'booty'
         level = 1
         column = "level"
         lentry = date.today()
         self.update_user(username, column, level, lentry)
-        return
+        return'''

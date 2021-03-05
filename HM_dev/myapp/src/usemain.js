@@ -5,6 +5,7 @@ import LoginForm from './loginform';
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+//import UseGraph from './graphing';
 
 class UseMain extends React.Component {
     constructor(props) {
@@ -31,9 +32,9 @@ class UseMain extends React.Component {
         const useris = this.state.useris;
         return (
             <div>
-                <WeightForm />
-                {useris}
-                <CaloriesForm />
+                How are you feeling today, {useris}?
+                <WeightForm useris={useris} />
+                <CaloriesForm useris={useris} /><br />
             </div>
         )
     }

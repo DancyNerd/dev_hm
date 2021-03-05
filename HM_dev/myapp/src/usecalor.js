@@ -5,7 +5,8 @@ class CaloriesForm extends React.Component {
         super(props);
 
         this.state = {
-            calories: ''
+            calories: '',
+            useris: props.useris
         };
 
         this.handleChange = this.handleChange.bind(this);

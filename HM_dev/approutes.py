@@ -122,13 +122,15 @@ def change_settings():
 
 @app.route('/wsub', methods=['POST'])
 def weight_sub():
-    username = get_cookie()
-    column = 'weight'
     data = request.get_json()
-    weight = data.values()
+    username = data.get('useris')
+    weight = data.get('weight')
     lentry = date.today()
-    User.update_user(username, column, weight, lentry)
-    return('Submitted')
+    msg = User.update_weight(username, weight, lentry)
+    retmsg = {
+        'message':msg
+    }
+    return(jsonify(retmsg))
 
 def create_pass():
     passcode = str(random.randint(1000, 9999))

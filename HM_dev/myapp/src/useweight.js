@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import UseMain from './usemain';
+import DBUpdated from './wupdated';
 
 class WeightForm extends React.Component {
     constructor(props) {
@@ -11,6 +13,7 @@ class WeightForm extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.SUpdated = this.SUpdated.bind(this);
     }
 
     handleChange(event) {
@@ -21,48 +24,50 @@ class WeightForm extends React.Component {
         this.setState({
             ...this.state,
             [name]: value
-        })
+        });
+    }
+
+    SUpdated(message, streak) {
+        this.setState({
+            updMess: message,
+            streak: streak
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const { weight } = this.state;
-        alert(`weight: ${weight}`);
+        const useris = this.state.useris;
 
         const datapack = {
+            "useris":useris,
             "weight": weight
         };
 
-        const floute = "127.0.0.1:5000/u";
+        const floute = "http://127.0.0.1:5000/wsub";
 
-        const postData = async(floute, datapack) => {
-            
-            const response = await fetch(floute, {
-                method: 'POST', //login in Flask accepts POST
-                mode: 'cors', //CORS is enabled in Flask
-                cache: 'no-cache', //Might be for the best tho
-                credentials: 'same-origin', //is it really tho
-                headers: {
-                    'Content-Type': 'application/json' //should be right
-                },
-                redirect: 'follow', //FIGURE THIS ONE OUT PLS
-                body: JSON.stringify(datapack)
-            });
-            return response.json();
-        };
-
-        postData(floute, datapack).then(data => {
-            alert(data);
+        axios.post(floute, {
+            'useris': `${useris}`, 
+            'weight':`${weight}`
+        })
+        .then((response) => {
+            var message = response.data.message;
+            var streak = response.data.streak;
+            this.SUpdated(message, streak);
+        })
+        .catch(function(error){
+            console.log.bind(error);
         });
+        
 
     }
 
     render() {
-        const useris =  this.state.useris;
+        //const useris =  this.state.useris;
         return(
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    {useris} Weight:
+                    Weight:
                     <input name='weight' 
                     type='number' 
                     value= {this.state.weight} 
@@ -70,6 +75,7 @@ class WeightForm extends React.Component {
                     />
                 </label>
                 <input type='submit' /><br />
+                {this.state.updMess && <DBUpdated message={this.state.updMess} streak={this.state.streak} />}
             </form>
         );
     }
