@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 class CaloriesForm extends React.Component {
@@ -28,33 +29,20 @@ class CaloriesForm extends React.Component {
     handleSubmit(event) {
         const { calories } = this.state;
         event.preventDefault();
-        alert(`calories: ${calories}`)
+        alert('FDA DB DOWN')
         
-        const datapack = {
-            'calories': calories
-        };
 
-        const floute = "127.0.0.1:5000/cal";
+        const floute = "http://127.0.0.1:5000/cal";
 
-        const postData = async(floute, datapack) => {
-
-            const response = await fetch(floute, {
-                method: 'POST', //function in Flask accepts POST
-                mode: 'cors', //CORS is enabled in Flask
-                cache: 'no-cache', //Truly I'm tired of clearing this anyway
-                credentials: 'same-origin', //pretty sure it's right??
-                headers: {
-                    'Content-Type': 'application/json' //really, this has to be right
-                },
-                redirect: 'follow', //this might not actually be best practice?
-                referrerPolicy: 'no-referrer', //whatever this means XD
-                body: JSON.stringify(datapack)
-            });
-            return response.json();
-        };
-
-        postData(floute, datapack).then(data => {
-            alert(data);
+        axios.post(floute, {
+            'calories': `${calories}`,
+        })
+        .then((response)=> {
+            var broken = response.data.message;
+            alert(`${broken}`);
+        })
+        .catch(function(error) {
+            console.log(error);
         });
 
     }

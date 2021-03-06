@@ -5,7 +5,7 @@ TOKEN = "ZDTgbZ7bnPCNIQbmIOjKRIzJ4S5jFEeTvvYwDYHB"
 
 #take user input and send it to FDA API for search
 def uinp_search(userinp):
-    pass
+    return('blob')
 
 #acquire/parse results for caloric intake
 def cal_parse():

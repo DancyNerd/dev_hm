@@ -4,6 +4,7 @@ from flask_cors import CORS
 from datetime import date
 import random
 from flask_bcrypt import Bcrypt
+from util import uinp_search
 
 '''
 LINUX USERS USE export FLASK_APP=approutes.py
@@ -114,7 +115,12 @@ def user(username):
 
 @app.route('/cal', methods=['POST'])
 def calories(calories):
-    return("API CALLS GO HERE")
+    data  = request.get_json()
+    blob = uinp_search(data)
+    retmsg = {
+        'message': "FDA DB BROKEN"
+    }
+    return(jsonify(retmsg))
 
 @app.route('/settings', methods=['POST', 'GET'])
 def change_settings():

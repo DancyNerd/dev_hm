@@ -42,12 +42,14 @@ class AcctForm extends React.Component {
     handleSubmit(event) {
         const { username, emailAdd, height, weight, hsex, goal } = this.state;
         event.preventDefault();
+        /*
         alert(`Username: ${username}
                          ${emailAdd}
                          ${height}
                          ${weight}
                          ${hsex}
                          ${goal}`);
+        */
 
         const floute = "http://127.0.0.1:5000/newuser";
 

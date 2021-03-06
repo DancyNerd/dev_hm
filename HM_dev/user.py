@@ -65,6 +65,11 @@ class User:
             streak = int(row[0])
             lentry = row[1]
         nstreak = streaks(lentry, streak, username)
+        print("STREAK")
+        print(streak)
+        print("-----------------------")
+        print("NSTREAK")
+        print(nstreak)
         if nstreak != streak:
             with sqlite3.connect(self.dbpath) as conn:
                 cursor = conn.cursor()

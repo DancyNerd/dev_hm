@@ -7,6 +7,8 @@ def extract(weight):
 def streaks(lentry, streak, username):
     dbdt=lentry
     etime=dtcheck(dbdt)
+    print("ETIME")
+    print(etime)
     if etime == 1:
         streak += 1
     else:
@@ -20,7 +22,12 @@ def dtcheck(db_datetime):
 
     #Determine how long it's been since last weight log
     cur_date = date.today()
-    pos_dtelapse = []
+    yesterday = cur_date - timedelta(days=1)
+    if yesterday == db_datetime:
+        etime = 1
+    else:
+        etime = 0
+    '''pos_dtelapse = []
     i=0
     while i < 14:
         pos_dtelapse.append(cur_date - timedelta(days=i))
@@ -32,5 +39,5 @@ def dtcheck(db_datetime):
             return etime
         else:
             etime+=1
-    etime+=2
+    etime+=2'''
     return etime
