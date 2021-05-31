@@ -43,12 +43,13 @@ class User:
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
-            UPDATE users
-            SET weight=?,
-            lentry=?
-            WHERE username=?
+            UPDATE users 
+            SET (weight, lentry)
+            WHERE username = (username)
+             VALUES(?, ?, ?)
             """
-            cursor.execute((sql), (weight, lentry, username))
+            values = (weight, lentry, username)
+            cursor.execute((sql), (values))
         return ('Weight Updated')
 
     @classmethod
@@ -58,9 +59,9 @@ class User:
             cursor = conn.cursor()
             sql = f"""
             SELECT streakcount, lentry FROM users
-            WHERE username = ?
+            WHERE username = (username)
             """
-            cursor.execute((sql), (username,))
+            cursor.execute((sql), (username))
         for row in cursor.fetchall():
             streak = int(row[0])
             lentry = row[1]
@@ -75,10 +76,11 @@ class User:
                 cursor = conn.cursor()
                 sql = f"""
                 UPDATE users
-                SET streak=?
-                WHERE username=?
+                SET (streak)
+                WHERE username=(username), VALUES(?, ?)
                 """
-                cursor.execute((sql), (nstreak, username))
+                values = (nstreak, username)
+                cursor.execute((sql), (values))
             streak=nstreak
         return streak
     
