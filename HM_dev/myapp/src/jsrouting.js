@@ -13,7 +13,7 @@ import UseMain from './usemain';
 import './index.css';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { User } from "./usemain";
+import { UseMain } from "./usemain";
 
 function AppRouting() {
 
