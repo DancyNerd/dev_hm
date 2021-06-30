@@ -76,11 +76,10 @@ def login():
     print('made it to login')
     data = request.get_json()
     username = str(data.get('username'))
-    passcode = str(data.get('password'))
-    #password = phasher(passcode)
-    password = passcode
+    passcode = str(data.get('passcode'))
+
     print("USERNAME: "+username+", PASSCODE: "+passcode)
-    inserted = User.login(username, password)
+    inserted = User.login(username, passcode)
     '''
     resp = make_response(render_template(...))
     cookie_name = 'hi_hm_dev'
