@@ -17,10 +17,7 @@ flypt = Bcrypt(app)
 
 @app.route('/')
 def home():
-    if get_cookie():
-        return('something')
-    else:
-        return('nothing')
+    return("cool")
 
 @app.route('/newuser', methods=['POST', 'GET'])
 def user_create():
@@ -80,13 +77,7 @@ def login():
 
     print("USERNAME: "+username+", PASSCODE: "+passcode)
     inserted = User.login(username, passcode)
-    '''
-    resp = make_response(render_template(...))
-    cookie_name = 'hi_hm_dev'
-    cookie_val = chocolatechip(username)
-    resp.set_cookie(cookie_name, cookie_val, max_age=7200)
-    return (jsondata, resp)
-    '''
+
     if inserted==True:
         jsondata = {
             'username':username
@@ -97,15 +88,6 @@ def login():
             "message":"could not locate username/password combination"
     }
     return(jsonify(jsondata))
-
-@app.route('/getcookie', methods=['POST'])
-def get_cookie():
-    #cookiename = "hm_dev_cookie"
-    cookies = request.cookies.get('username')
-    if cookies:
-        return cookies
-    else:
-        return('ERROR')
     
 
 @app.route('/u', methods=['POST'])
@@ -142,20 +124,6 @@ def weight_sub():
 def create_pass():
     passcode = str(random.randint(1000, 9999))
     return passcode
-
-def phasher(password):
-    phash = flypt.generate_password_hash(password).decode('utf-8')
-    return phash
-
-def easybake(username):
-    #cookdate = str(date.today())
-    cookiename = "hm_dev_cookie"
-    return(cookiename)
-
-def chocolatechip(username):
-    cookie_val = 'username:'+username
-    return(cookie_val)
-
 
 def error_list(errno):
     if errno==0:
