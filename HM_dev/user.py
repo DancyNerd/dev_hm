@@ -36,6 +36,7 @@ class User:
         upc = True
         return (upc)
             
+    #Update the user's weight
     @classmethod
     def update_weight(self, username, weight, lentry):
         self.username = username
@@ -52,6 +53,7 @@ class User:
             cursor.execute((sql), (values))
         return ('Weight Updated')
 
+    #Automatically update the user's streak
     @classmethod
     def update_streak(self, username, lentry):
         self.username = username
@@ -66,6 +68,8 @@ class User:
             streak = int(row[0])
             lentry = row[1]
         nstreak = streaks(lentry, streak, username)
+
+        #For testing and development
         print("STREAK")
         print(streak)
         print("-----------------------")
@@ -84,6 +88,7 @@ class User:
             streak=nstreak
         return streak
     
+    #Update the user's calories 
     def update_calories(self, username, column, value):
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
@@ -93,8 +98,9 @@ class User:
             SET {column} = {value}
             """
             cursor.execute(sql)
-            return('DB updated')
+            return('DB updated')  
 
+    #Validate the user's username and password against the db for login
     @classmethod
     def login(self, username, password):
         username = username
@@ -112,10 +118,11 @@ class User:
 
         return (inserted)
 
-    #create Levels and return current level
+    #Update level
     def new_level(self, level, plateau, goal):
         pass
 
+    #Checking Session ID, for use with cookie handling
     def authentication(self, session_id):
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
@@ -123,12 +130,14 @@ class User:
             cursor.execute(sql, (session_id))
             return
     
+    #Create hash of passcode
     @staticmethod
     def passhash(password):
         phash = hashlib.sha256()
         phash.update(password.encode())
         return phash.hexdigest()
     
+    #Create Session ID for cookie handling
     @staticmethod
     def create_session_id():
         shash = hashlib.sha256()

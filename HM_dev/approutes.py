@@ -11,6 +11,7 @@ LINUX USERS USE export FLASK_APP=approutes.py
 WINDOWS USERS USE set FLASK_APP=approutes.py
 '''
 
+#Needed to make Flask function with both itself and the JS end
 app = Flask(__name__)
 CORS(app)
 flypt = Bcrypt(app)
@@ -19,6 +20,7 @@ flypt = Bcrypt(app)
 def home():
     return("cool")
 
+#Receive data for creating a new user account
 @app.route('/newuser', methods=['POST', 'GET'])
 def user_create():
 
@@ -68,6 +70,7 @@ def create_success():
     return jsonify({"account":"successfully created"})
 '''
 
+#Receive login data for user account
 @app.route('/login', methods=['POST'])
 def login():
     print('made it to login')
@@ -89,11 +92,12 @@ def login():
     }
     return(jsonify(jsondata))
     
-
+#For use with cookies
 @app.route('/u', methods=['POST'])
 def user(username):
     pass
 
+#Receives caloric info, in future pass to FDA API
 @app.route('/cal', methods=['POST'])
 def calories(calories):
     data  = request.get_json()
@@ -103,10 +107,12 @@ def calories(calories):
     }
     return(jsonify(retmsg))
 
+#Ability for users to change certain things will exist eventually
 @app.route('/settings', methods=['POST', 'GET'])
 def change_settings():
     return('under construction')
 
+#Acquires weight update, also updates streak
 @app.route('/wsub', methods=['POST'])
 def weight_sub():
     data = request.get_json()
@@ -121,10 +127,12 @@ def weight_sub():
     }
     return(jsonify(retmsg))
 
+#Creates passcode, so user is not using password connected to other accounts
 def create_pass():
     passcode = str(random.randint(1000, 9999))
     return passcode
 
+#List of error messages, eventually these need to be fully implemented.
 def error_list(errno):
     if errno==0:
         msg = {"Error":"You must fill in every field."}
