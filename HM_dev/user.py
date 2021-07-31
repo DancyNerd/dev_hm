@@ -10,17 +10,17 @@ from dtfuncs import streaks
 class User:
     dbpath = "hmedev.db"
     def __init__(self, username, email, height, weight, hsex, goal, lentry, password, streakcount=0, level=1, plateau=0):
-        self.username = username
-        self.email = email
-        self.password = password
-        self.hsex = hsex
-        self.height = height
-        self.weight = weight
-        self.level = level
-        self.plateau = plateau
-        self.goal = goal
-        self.streakcount = streakcount
-        self.lentry = lentry
+        self.username = username #verified matches db
+        self.email = email #verified matches db
+        self.password = password #verified matches db
+        self.hsex = hsex #verified matches db
+        self.height = height #verified matches db
+        self.weight = weight #verified matches db
+        self.level = level #verified matches db
+        self.plateau = plateau #verified matches db
+        self.goal = goal #verified matches db
+        self.streakcount = streakcount #verified matches db
+        self.lentry = lentry #verified matches db
 
     #add new users to db
     def insert(self):
@@ -34,6 +34,7 @@ class User:
             values = (self.username, self.email, self.password, self.height, self.weight, self.hsex, self.goal, self.lentry, self.streakcount, self.level, self.plateau)
             cursor.execute(sql, values)
         upc = True
+        #verified variables match db, table name is correct
         return (upc)
             
     #Update the user's weight
@@ -51,6 +52,7 @@ class User:
             """
             values = (weight, lentry, username)
             cursor.execute((sql), (values))
+            #verified variables and table name match db
         return ('Weight Updated')
 
     #Automatically update the user's streak
@@ -64,6 +66,7 @@ class User:
             WHERE username = (username)
             """
             cursor.execute((sql), (username))
+            #verified variables and table name match db
         for row in cursor.fetchall():
             streak = int(row[0])
             lentry = row[1]
@@ -86,8 +89,10 @@ class User:
                 values = (nstreak, username)
                 cursor.execute((sql), (values))
             streak=nstreak
+            #verified variables match db where appropriate, table name matches
         return streak
     
+    #FIX THIS
     #Update the user's calories 
     def update_calories(self, username, column, value):
         with sqlite3.connect(self.dbpath) as conn:
@@ -116,12 +121,14 @@ class User:
         else:
             inserted = False
 
+        #verified variables and table name match db
         return (inserted)
 
     #Update level
     def new_level(self, level, plateau, goal):
         pass
 
+    #Might need separate table
     #Checking Session ID, for use with cookie handling
     def authentication(self, session_id):
         with sqlite3.connect(self.dbpath) as conn:
@@ -130,6 +137,7 @@ class User:
             cursor.execute(sql, (session_id))
             return
     
+    #Probably not using this right now? Need to verify that
     #Create hash of passcode
     @staticmethod
     def passhash(password):
@@ -137,6 +145,7 @@ class User:
         phash.update(password.encode())
         return phash.hexdigest()
     
+    #Definitely not yet using this
     #Create Session ID for cookie handling
     @staticmethod
     def create_session_id():

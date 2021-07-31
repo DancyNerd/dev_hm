@@ -30,7 +30,7 @@ caloric understanding
     maybe future things
 '''
 
-
+#Create users table in db with list of user-oriented variables
 def schema(dbpath="hmedev.db"):
     with sqlite3.connect(dbpath) as conn:
         cursor=conn.cursor()
@@ -49,6 +49,7 @@ def schema(dbpath="hmedev.db"):
         plateau INTEGER
         )""")
 
+    #Also create calorietrack table in db with list of variables
     with sqlite3.connect(dbpath) as conn:
         cursor = conn.cursor()
         cursor.execute("""
@@ -60,6 +61,7 @@ def schema(dbpath="hmedev.db"):
         )
         """)
 
+#Is a table for cookie handling necessary/a good idea?
 
 
 
