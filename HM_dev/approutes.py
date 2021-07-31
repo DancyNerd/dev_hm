@@ -77,6 +77,8 @@ def login():
     data = request.get_json()
     username = str(data.get('username'))
     passcode = str(data.get('passcode'))
+    
+    valid, msg = validate_user(username, passcode)
 
     print("USERNAME: "+username+", PASSCODE: "+passcode)
     inserted = User.login(username, passcode)
@@ -131,6 +133,25 @@ def weight_sub():
 def create_pass():
     passcode = str(random.randint(1000, 9999))
     return passcode
+
+#Basic login validation, returns appropriate message
+def validate_user(username, passcode):
+    valid = False
+    if username & passcode:
+        if username<1 or passcode<1:
+            errno=0
+            msg=error_list(errno)
+        
+        else:
+            valid = True
+            msg = "continue"
+
+    else:
+        errno=4
+        msg=error_list(errno)
+
+
+    return valid, msg
 
 #List of error messages, eventually these need to be fully implemented.
 def error_list(errno):
