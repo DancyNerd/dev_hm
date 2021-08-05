@@ -111,13 +111,19 @@ class User:
         username = username
         password = password
         if username and password:
-            inserted = True
             with sqlite3.connect(self.dbpath) as conn:
                 cursor = conn.cursor()
                 sql = f"""
                 SELECT * FROM users WHERE username=? and password=?
                 """
                 cursor.execute((sql),(username, password))  
+                ret_user = cursor.fetchall()
+                if ret_user:
+                    inserted = True
+                    for row in ret_user:
+                        print(row)
+                else:
+                    inserted = False
         else:
             inserted = False
 

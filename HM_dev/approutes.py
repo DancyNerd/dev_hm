@@ -80,8 +80,12 @@ def login():
     
     valid, msg = validate_user(username, passcode)
 
+    if valid==False:
+        return (jsonify(msg))
+
     print("USERNAME: "+username+", PASSCODE: "+passcode)
-    inserted = User.login(username, passcode)
+    password = passcode
+    inserted = User.login(username, password)
 
     if inserted==True:
         jsondata = {
@@ -89,7 +93,7 @@ def login():
         }
     else:
         jsondata = {
-            "Error": "Error on account lookup",
+            "Error": "Error on account lookup ",
             "message":"could not locate username/password combination"
     }
     return(jsonify(jsondata))
@@ -137,8 +141,8 @@ def create_pass():
 #Basic login validation, returns appropriate message
 def validate_user(username, passcode):
     valid = False
-    if username & passcode:
-        if username<1 or passcode<1:
+    if username:
+        if len(username)<1 or len(passcode)<1:
             errno=0
             msg=error_list(errno)
         
