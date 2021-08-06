@@ -61,21 +61,22 @@ class User:
     #Automatically update the user's streak
     @classmethod
     def update_streak(self, username, lentry):
-        self.username = username
+        self.username = str(username)
         print(username)
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
-            SELECT streakcount, lentry FROM users
-            WHERE username = ?
+            SELECT streakcount, lentry FROM users WHERE username = ?
             """
-            cursor.execute(sql, username)
+            values = (username,)
+            cursor.execute(sql, values)
             #verified variables and table name match db
         for row in cursor.fetchall():
+            print(row)
             streak = int(row[0])
             lentry = row[1]
         nstreak = streaks(lentry, streak, username)
-
+        
         #For testing and development
         print("STREAK")
         print(streak)
