@@ -76,7 +76,7 @@ def login():
     print('made it to login')
     data = request.get_json()
     username = str(data.get('username'))
-    passcode = str(data.get('passcode'))
+    passcode = str(data.get('password'))
     
     valid, msg = validate_user(username, passcode)
 

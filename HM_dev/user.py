@@ -1,6 +1,5 @@
 import sqlite3
 import random
-import os
 import hashlib
 from datetime import date
 from schema import schema
@@ -32,7 +31,11 @@ class User:
                 username, email, password, height, weight, hsex, goal, lentry, streakcount, level, plateau
             ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             values = (self.username, self.email, self.password, self.height, self.weight, self.hsex, self.goal, self.lentry, self.streakcount, self.level, self.plateau)
-            cursor.execute(sql, values)
+            try:
+                cursor.execute(sql, values)
+            except sqlite3.Error as err:
+                print('SQLite Error: %s' % (' '.join(err.args)))
+                upc = False
         upc = True
         #verified variables match db, table name is correct
         return (upc)
