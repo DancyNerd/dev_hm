@@ -49,12 +49,12 @@ class User:
             cursor = conn.cursor()
             sql = f"""
             UPDATE users 
-            SET (weight, lentry)
-            WHERE username = (username)
-             VALUES(?, ?, ?)
+            SET weight = ? ,
+                lentry = ? 
+            WHERE username = ?
             """
             values = (weight, lentry, username)
-            cursor.execute((sql), (values))
+            cursor.execute(sql, values)
             #verified variables and table name match db
         return ('Weight Updated')
 
@@ -62,13 +62,14 @@ class User:
     @classmethod
     def update_streak(self, username, lentry):
         self.username = username
+        print(username)
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = f"""
             SELECT streakcount, lentry FROM users
-            WHERE username = (username)
+            WHERE username = ?
             """
-            cursor.execute((sql), (username))
+            cursor.execute(sql, username)
             #verified variables and table name match db
         for row in cursor.fetchall():
             streak = int(row[0])
