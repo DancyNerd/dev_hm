@@ -5,7 +5,7 @@ TOKEN = "ZDTgbZ7bnPCNIQbmIOjKRIzJ4S5jFEeTvvYwDYHB"
 
 #take user input and send it to FDA API for search
 def uinp_search(userinp):
-    url = f'https://api.nal.usda.gove/fdc/v1/foods/search?api_key={TOKEN}&query={userinp}'
+    url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={TOKEN}&query={userinp}'
     r = requests.get(url)
     print(r.status_code)
     return('blob')
