@@ -1,5 +1,7 @@
 import requests
 
+#This script does not currently have implementation plans, so it isn't completed.
+
 API_STEM = "https://developer.nrel.gov/api/"
 TOKEN = "ZDTgbZ7bnPCNIQbmIOjKRIzJ4S5jFEeTvvYwDYHB"
 
