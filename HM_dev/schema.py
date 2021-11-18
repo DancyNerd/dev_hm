@@ -1,34 +1,7 @@
 #DB segment, import db
 import sqlite3
 
-'''
-List o table things
-user
-    email address
-    username
-    height
-    weight
-    hormonal sex
-    time zone
-    loss/gain
-    goal
-    level ref
-    plateau valley
-    session_id
-levels
-    L1
-    L2
-    L3
-    L4
-    L5
-    L6
-    L7
-    L8/GOAL
-    Plateau
-    userref
-caloric understanding
-    maybe future things
-'''
+
 
 #Create users table in db with list of user-oriented variables
 def schema(dbpath="hmedev.db"):
@@ -71,3 +44,32 @@ def schema(dbpath="hmedev.db"):
 
 if __name__=="__main__":
     schema()
+
+'''
+List o table things
+user
+    email address
+    username
+    height
+    weight
+    hormonal sex
+    time zone
+    loss/gain
+    goal
+    level ref
+    plateau valley
+    session_id
+levels
+    L1
+    L2
+    L3
+    L4
+    L5
+    L6
+    L7
+    L8/GOAL
+    Plateau
+    userref
+caloric understanding
+    maybe future things
+'''
