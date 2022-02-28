@@ -105,11 +105,11 @@ def user(username):
 
 #Receives caloric info, in future pass to FDA API
 @app.route('/cal', methods=['POST'])
-def calories(calories):
+def calories():
     data  = request.get_json()
     blob = uinp_search(data)
     retmsg = {
-        'message': "FDA DB BROKEN"
+        'message': blob
     }
     return(jsonify(retmsg))
 

@@ -27,9 +27,10 @@ class CaloriesForm extends React.Component {
     }
 
     handleSubmit(event) {
-        const { calories } = this.state;
+
         event.preventDefault();
-        alert('FOODCENTRAL DB DOWN')
+        const { calories } = this.state;
+        //alert('FOODCENTRAL DB DOWN')
         
 
         const floute = "http://127.0.0.1:5000/cal";
