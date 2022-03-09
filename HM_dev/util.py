@@ -1,4 +1,5 @@
 import requests
+import json
 
 #This script does not currently have implementation plans, so it isn't completed.
 
@@ -10,7 +11,9 @@ def uinp_search(userinp):
     thequery = userinp.get('calories')
     url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={TOKEN}&query={thequery}'
     r = requests.get(url)
-    print(r.text)
+    retlist = r.text.split('{')
+    for item in retlist:
+        print(item)
     return('blob') 
 
 #acquire/parse results for caloric intake
