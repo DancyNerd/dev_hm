@@ -11,9 +11,10 @@ def uinp_search(userinp):
     thequery = userinp.get('calories')
     url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={TOKEN}&query={thequery}'
     r = requests.get(url)
-    retlist = r.text.split('{')
-    for item in retlist:
-        print(item)
+    rdict = dict(r.json())
+    for key in rdict:
+        print(key)
+    print(rdict["foods"])
     return('blob') 
 
 #acquire/parse results for caloric intake
