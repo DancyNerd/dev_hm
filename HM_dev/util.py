@@ -12,17 +12,27 @@ def uinp_search(userinp):
     url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={TOKEN}&query={thequery}'
     r = requests.get(url)
     rdict = dict(r.json())
-    for key in rdict:
-        print(key)
-    print(rdict["foods"])
-    return('blob') 
+    retitem = cal_parse(rdict)
+    return(retitem) 
 
 #acquire/parse results for caloric intake
-def cal_parse():
-    pass
+def cal_parse(rdict):
+    for item in rdict:
+        print(item)
+        print("\n \n")
+    food = rdict["foods"]
+    for item in food:
+        print(item)
+    return("newblob")
 
 #return results to user perspective
-def ret_results():
+def ret_results(listitem):
+    '''
+    for thing in listitem:
+        fdict = thing[0]
+        retitem = fdict["description"]
+        return(retitem)
+    '''
     pass
 
 #update the graph info/dynamic
