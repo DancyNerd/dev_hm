@@ -17,12 +17,14 @@ def uinp_search(userinp):
 
 #acquire/parse results for caloric intake
 def cal_parse(rdict):
-    for item in rdict:
-        print(item)
-        print("\n \n")
     food = rdict["foods"]
-    for item in food:
-        print(item)
+    foodlist = []
+    n = 0
+    for objet in food:
+        q = food[n]
+        idescr = q["description"]
+        foodlist.append(idescr)
+        n = n+1
     return("newblob")
 
 #return results to user perspective
