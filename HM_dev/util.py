@@ -1,5 +1,5 @@
 import requests
-import json
+from flask import jsonify
 
 #This script does not currently have implementation plans, so it isn't completed.
 
@@ -19,23 +19,22 @@ def uinp_search(userinp):
 def cal_parse(rdict):
     food = rdict["foods"]
     foodlist = []
-    n = 0
     for objet in food:
-        q = food[n]
-        idescr = q["description"]
+        idescr = objet["description"]
         foodlist.append(idescr)
-        n = n+1
-    return("newblob")
+    retitem = ret_results(foodlist)
+    return(retitem)
 
 #return results to user perspective
-def ret_results(listitem):
-    '''
-    for thing in listitem:
-        fdict = thing[0]
-        retitem = fdict["description"]
-        return(retitem)
-    '''
-    pass
+def ret_results(foodlist):
+    n=0
+    retdict = {}
+    for thing in foodlist:
+        q = str(n)
+        retdict["item"+q] = thing
+        n = n+1
+    retitem = jsonify(retdict)
+    return(retitem)
 
 #update the graph info/dynamic
 '''

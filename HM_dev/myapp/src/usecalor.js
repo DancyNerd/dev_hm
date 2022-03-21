@@ -12,6 +12,7 @@ class CaloriesForm extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.itemsReturned = this.itemsReturned.bind(this);
     }
 
     handleChange(event) {
@@ -24,6 +25,12 @@ class CaloriesForm extends React.Component {
             [name]: value
         });
 
+    }
+
+    itemsReturned(message) {
+        this.setState({
+            updList: message
+        });
     }
 
     handleSubmit(event) {
@@ -39,7 +46,7 @@ class CaloriesForm extends React.Component {
             'calories': `${calories}`,
         })
         .then((response)=> {
-            var broken = response.data.message;
+            var message = response.data;
             alert(`${broken}`);
         })
         .catch(function(error) {
@@ -63,8 +70,9 @@ class CaloriesForm extends React.Component {
                     />
                 </label>
                 <input type='submit' /><br />
+                {this.state.updList && <CalRet />}
             </form>
-        )
+        );
     }
 
 
