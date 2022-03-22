@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import CalRet from './listcalret';
 
 class CaloriesForm extends React.Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class CaloriesForm extends React.Component {
         })
         .then((response)=> {
             var message = response.data;
-            alert(`${broken}`);
+            this.CalRet(message);
         })
         .catch(function(error) {
             console.log(error);

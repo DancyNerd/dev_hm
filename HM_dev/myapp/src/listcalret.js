@@ -17,3 +17,5 @@ function CalRet({}) {
         </h4>
     )
 }
+
+export default CalRet;
