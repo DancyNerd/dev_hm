@@ -31,7 +31,7 @@ def ret_results(foodlist):
     retdict = {}
     for thing in foodlist:
         q = str(n)
-        retdict["item"+q] = thing
+        retdict["product"] = thing
         n = n+1
     #retitem = jsonify(retdict)
     retitem = json.dumps(retdict)

@@ -9,13 +9,24 @@ This should be in the form of a list that can be selected from.
 -consider storing per day and updating quantities of that day until the day is over
 -graph plots by day
 */
+class CalRet extends Component ({ message }) {
 
-function CalRet({}) {
-    return(
-        <h4>
-            //return stuff goes here
-        </h4>
-    )
+    state = {
+        foodlist: []
+    };
+
+    render() {
+        return (
+            <React.Fragment>
+                <ul className="list-group">
+                    {this.state.foodlist.map(foodlist => (
+                        <li key={foodlist.product}>
+                        </li>
+                    ))}
+                </ul>
+            </React.Fragment>
+        );
+    }
 }
 
 export default CalRet;
