@@ -1,5 +1,5 @@
 import requests
-from flask import jsonify
+import json
 
 #This script does not currently have implementation plans, so it isn't completed.
 
@@ -33,7 +33,8 @@ def ret_results(foodlist):
         q = str(n)
         retdict["item"+q] = thing
         n = n+1
-    retitem = jsonify(retdict)
+    #retitem = jsonify(retdict)
+    retitem = json.dumps(retdict)
     return(retitem)
 
 #update the graph info/dynamic
