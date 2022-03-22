@@ -9,11 +9,15 @@ This should be in the form of a list that can be selected from.
 -consider storing per day and updating quantities of that day until the day is over
 -graph plots by day
 */
-class CalRet extends Component ({ message }) {
 
-    state = {
-        foodlist: []
-    };
+class CalRet extends Component  {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            foodlist: []
+        };
+    }
 
     render() {
         return (
