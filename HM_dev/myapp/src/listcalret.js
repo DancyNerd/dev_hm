@@ -20,6 +20,7 @@ class CalRet extends Component  {
 
         for (let i = 0; i < props.length; i++) {
             const items = props.product[i];
+            const foodlist = this.state;
             foodlist.concat(items);
         }
     }
