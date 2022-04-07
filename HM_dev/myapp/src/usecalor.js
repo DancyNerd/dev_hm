@@ -67,7 +67,7 @@ class CaloriesForm extends React.Component {
                     type='text'
                     name='calories'
                     onChange={this.handleChange}
-                    value={calories}
+                    value={this.state.calories}
                     />
                 </label>
                 <input type='submit' /><br />

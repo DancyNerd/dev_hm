@@ -31,11 +31,15 @@ def ret_results(foodlist):
     retdict = {}
     for thing in foodlist:
         q = str(n)
-        retdict["product"] = thing
+        retdict["product"+q] = thing
         n = n+1
-    #retitem = jsonify(retdict)
     retitem = json.dumps(retdict)
+    show_res(retdict)
     return(retitem)
+
+def show_res(retdict):
+    for item in retdict:
+        print(item)
 
 #update the graph info/dynamic
 '''
