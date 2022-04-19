@@ -8,7 +8,7 @@ class CaloriesForm extends React.Component {
 
         this.state = {
             calories: '',
-            useris: props.useris
+            useris: props.useris,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -48,16 +48,16 @@ class CaloriesForm extends React.Component {
         })
         .then((response)=> {
             var message = response.data;
-            const CalRet = ({message});
+            const CalRet = JSON.parse(message)
         })
         .catch(function(error) {
-            console.log(error);
+            console.log.bind(error);
         });
 
     }
 
     render() {
-        const calories = this.state.calories;
+        //const calories = this.state.calories;
 
         return (
             <form onSubmit={this.handleSubmit}>
