@@ -48,7 +48,7 @@ class CaloriesForm extends React.Component {
         })
         .then((response)=> {
             var message = response.data;
-            const CalRet = JSON.parse(message)
+            this.itemsReturned(message);
         })
         .catch(function(error) {
             console.log.bind(error);
@@ -66,8 +66,8 @@ class CaloriesForm extends React.Component {
                     <input 
                     type='text'
                     name='calories'
-                    onChange={this.handleChange}
                     value={this.state.calories}
+                    onChange={this.handleChange}
                     />
                 </label>
                 <input type='submit' /><br />
