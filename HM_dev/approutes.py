@@ -73,7 +73,6 @@ def create_success():
 #Receive login data for user account
 @app.route('/login', methods=['POST'])
 def login():
-    print('made it to login')
     data = request.get_json()
     username = str(data.get('username'))
     passcode = str(data.get('password'))
@@ -83,7 +82,6 @@ def login():
     if valid==False:
         return (jsonify(msg))
 
-    print("USERNAME: "+username+", PASSCODE: "+passcode)
     password = passcode
     inserted = User.login(username, password)
 
