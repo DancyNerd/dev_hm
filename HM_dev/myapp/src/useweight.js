@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import UseMain from './usemain';
 import DBUpdated from './wupdated';
 
+//Displays weight entry form
+
+//Class for props, state for weight entry form
 class WeightForm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +19,7 @@ class WeightForm extends React.Component {
         this.SUpdated = this.SUpdated.bind(this);
     }
 
+    //function for on event, handle the change, update state
     handleChange(event) {
         const target = event.target;
         const value = target.value;
@@ -27,6 +31,7 @@ class WeightForm extends React.Component {
         });
     }
 
+    //State is update to this
     SUpdated(message, streak) {
         this.setState({
             updMess: message,
@@ -34,16 +39,19 @@ class WeightForm extends React.Component {
         });
     }
 
+    //What happens when user selects submit
     handleSubmit(event) {
         event.preventDefault();
         const { weight } = this.state;
         const useris = this.state.useris;
 
+        //Construct json for send to Flask server
         const datapack = {
             "useris":useris,
             "weight": weight
         };
 
+        //ET phone home
         const floute = "http://127.0.0.1:5000/wsub";
 
         axios.post(floute, {
@@ -62,6 +70,7 @@ class WeightForm extends React.Component {
 
     }
 
+    //Render function handles actual display segment
     render() {
         //const useris =  this.state.useris;
         return(
@@ -82,4 +91,5 @@ class WeightForm extends React.Component {
 
 }
 
+//Your pieces don't work if they are not exported
 export default WeightForm;
