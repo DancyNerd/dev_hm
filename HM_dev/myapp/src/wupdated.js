@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//Fragment for updating logon streak (consecutive weight entry metric)
 function DBUpdated({ message, streak }) {
     return (
         <h4>

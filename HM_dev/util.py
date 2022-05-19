@@ -37,6 +37,7 @@ def ret_results(foodlist):
     show_res(retdict)
     return(retitem)
 
+#visual representation of what's going on in case something goes wrong
 def show_res(retdict):
     for item in retdict:
         print(item)

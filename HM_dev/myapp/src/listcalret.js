@@ -10,6 +10,7 @@ This should be in the form of a list that can be selected from.
 -graph plots by day
 */
 
+//Component fragment class for returning list of items from usecalor.js form
 class CalRet extends Component  {
     constructor(props) {
         super(props);
@@ -24,7 +25,8 @@ class CalRet extends Component  {
             foodlist.concat(items);
         }
     }
-
+    
+    //display return results render return function
     render() {
         return (
             <React.Fragment>
