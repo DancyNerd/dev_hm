@@ -23,7 +23,6 @@ class UseMain extends React.Component {
             history: PropTypes.object.isRequired
         };
 
-        console.log(props.match.params);
 
     }
 

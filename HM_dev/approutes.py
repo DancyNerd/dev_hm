@@ -78,7 +78,7 @@ def login():
     passcode = str(data.get('password'))
     
     valid, msg = validate_user(username, passcode)
-
+    
     if valid==False:
         return (jsonify(msg))
 
@@ -126,10 +126,11 @@ def weight_sub():
     wmsg = User.update_weight(username, weight, lentry)
     smsg = User.update_streak(username, lentry)
     retmsg = {
-        'message':wmsg,
+        'message': wmsg,
         'streak': smsg
     }
     return(jsonify(retmsg))
+
 
 #Creates passcode, so user is not using password connected to other accounts
 def create_pass():

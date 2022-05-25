@@ -47,7 +47,10 @@ class CaloriesForm extends React.Component {
             'calories': `${calories}`,
         })
         .then((response)=> {
-            var message = response.data;
+            //var message = response.data;
+            var message = JSON.parse(response);
+            var iter = message.map();
+            console.log(iter);
             this.itemsReturned(message);
         })
         .catch(function(error) {
