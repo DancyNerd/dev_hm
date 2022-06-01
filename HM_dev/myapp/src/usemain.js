@@ -15,8 +15,6 @@ class UseMain extends React.Component {
             useris: props.location.state.id
         }
 
-        console.log(this.useris);
-
         const propTypes = {
             match: PropTypes.object.isRequired,
             location: PropTypes.object.isRequired,

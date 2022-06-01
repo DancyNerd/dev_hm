@@ -28,19 +28,28 @@ def cal_parse(rdict):
 #return results to user perspective
 def ret_results(foodlist):
     n=0
-    retdict = {}
+    condict = {}
+    retlist = []
     for thing in foodlist:
         q = str(n)
-        retdict["product"+q] = thing
+        cprodname = "product"+q
+        condict[cprodname] = thing
         n = n+1
+        tdict = {
+            cprodname:thing,
+        }
+        retlist.append(tdict)
+    retdict = {
+        "results":retlist,
+    }
     retitem = json.dumps(retdict)
     show_res(retdict)
     return(retitem)
 
 #visual representation of what's going on in case something goes wrong
 def show_res(retdict):
-    for item in retdict:
-        print(item)
+    print(retdict.items())
+    return
 
 #update the graph info/dynamic
 '''
