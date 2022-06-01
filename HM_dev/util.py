@@ -43,13 +43,12 @@ def ret_results(foodlist):
         "results":retlist,
     }
     retitem = json.dumps(retdict)
-    show_res(retdict)
+    show_res(retitem)
     return(retitem)
 
 #visual representation of what's going on in case something goes wrong
-def show_res(retdict):
-    print(retdict.items())
-    return
+def show_res(retitem):
+    print(retitem)
 
 #update the graph info/dynamic
 '''

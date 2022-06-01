@@ -30,7 +30,7 @@ class CaloriesForm extends React.Component {
 
     itemsReturned(message) {
         this.setState({
-            updList: message,
+            updList: results,
         });
     }
 
@@ -48,8 +48,8 @@ class CaloriesForm extends React.Component {
         })
         .then((response)=> {
             //var message = response.data;
-            var message = response.data;
-            this.itemsReturned(message);
+            var results = response.data.results;
+            this.itemsReturned(results);
         })
         .catch(function(error) {
             console.log.bind(error);
@@ -72,7 +72,7 @@ class CaloriesForm extends React.Component {
                     />
                 </label>
                 <input type='submit' /><br />
-                {this.state.updList && <CalRet message={this.state.itemsReturned} />}
+                {this.state.updList && <CalRet results={this.state.itemsReturned} />}
             </form>
         );
     }
