@@ -105,11 +105,9 @@ def user(username):
 @app.route('/cal', methods=['POST'])
 def calories():
     data  = request.get_json()
-    blob = uinp_search(data)
-    retmsg = {
-        'message': blob
-    }
-    return(jsonify(retmsg))
+    retmsg = uinp_search(data)
+
+    return(retmsg)
 
 #Ability for users to change certain things will exist eventually
 @app.route('/settings', methods=['POST', 'GET'])
