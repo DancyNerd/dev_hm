@@ -28,7 +28,7 @@ class CaloriesForm extends React.Component {
 
     }
 
-    itemsReturned(message) {
+    itemsReturned(results) {
         this.setState({
             updList: results,
         });
