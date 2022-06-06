@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import UseMain from './usemain';
 import DBUpdated from './wupdated';
 
 //Displays weight entry form
@@ -45,11 +44,6 @@ class WeightForm extends React.Component {
         const { weight } = this.state;
         const useris = this.state.useris;
 
-        //Construct json for send to Flask server
-        const datapack = {
-            "useris":useris,
-            "weight": weight
-        };
 
         //ET phone home
         const floute = "http://127.0.0.1:5000/wsub";

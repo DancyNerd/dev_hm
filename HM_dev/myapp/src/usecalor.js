@@ -44,10 +44,9 @@ class CaloriesForm extends React.Component {
         const floute = "http://127.0.0.1:5000/cal";
 
         axios.post(floute, {
-            'calories': `${calories}`,
+            'calories': `${calories}`
         })
         .then((response)=> {
-            //var message = response.data;
             var results = response.data.results;
             this.itemsReturned(results);
         })
@@ -58,7 +57,6 @@ class CaloriesForm extends React.Component {
     }
 
     render() {
-        //const calories = this.state.calories;
 
         return (
             <form onSubmit={this.handleSubmit}>
