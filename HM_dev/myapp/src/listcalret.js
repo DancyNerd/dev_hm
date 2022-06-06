@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 
 //Returns list of selectable options based on user's calorie input.
 
-function CalRet ({ results }) {
+function CalRet ({ resultsArr }) {
     return (
         <p>
-            Found it! {results}
+            Found it!
+            <ul>
+                {resultsArr.map(item => {
+                    return <li>item</li>;
+                })}
+            </ul>
         </p>
     );
 }
