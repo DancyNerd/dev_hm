@@ -70,7 +70,7 @@ class CaloriesForm extends React.Component {
                     />
                 </label>
                 <input type='submit' /><br />
-                {this.state.updList && <CalRet results={this.state.itemsReturned} />}
+                {this.state.updList && <CalRet results={this.state.updList} />}
             </form>
         );
     }
