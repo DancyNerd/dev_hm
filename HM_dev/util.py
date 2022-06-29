@@ -31,14 +31,17 @@ def ret_results(foodlist):
     condict = {}
     retlist = []
     for thing in foodlist:
-        q = str(n)
-        cprodname = "product"+q
-        condict[cprodname] = thing
-        n = n+1
-        tdict = {
-            cprodname:thing,
-        }
-        retlist.append(tdict)
+        if n<10:
+            q = str(n)
+            cprodname = "product"+q
+            condict[cprodname] = thing
+            n = n+1
+            tdict = {
+                cprodname:thing,
+            }
+            retlist.append(tdict)
+        else:
+            break
     retdict = {
         "results":retlist,
     }

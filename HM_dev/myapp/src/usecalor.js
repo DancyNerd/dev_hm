@@ -49,7 +49,6 @@ class CaloriesForm extends React.Component {
         .then((response)=> {
             var results = response.data.results;
             this.itemsReturned(results);
-            console.log(results);
         })
         .catch(function(error) {
             console.log.bind(error);
