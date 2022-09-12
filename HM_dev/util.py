@@ -1,7 +1,6 @@
 import requests
 import json
 
-#This script does not currently have implementation plans, so it isn't completed.
 
 API_STEM = "https://developer.nrel.gov/api/"
 TOKEN = "ZDTgbZ7bnPCNIQbmIOjKRIzJ4S5jFEeTvvYwDYHB"
@@ -28,18 +27,11 @@ def cal_parse(rdict):
 #return results to user perspective
 def ret_results(foodlist):
     n=0
-    condict = {}
     retlist = []
     for thing in foodlist:
         if n<10:
-            q = str(n)
-            cprodname = "product"+q
-            condict[cprodname] = thing
             n = n+1
-            tdict = {
-                cprodname:thing,
-            }
-            retlist.append(tdict)
+            retlist.append({"product":thing})
         else:
             break
     retdict = {
