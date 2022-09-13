@@ -45,6 +45,21 @@ class CalRet extends React.Component {
         });
     }
 
+    render() {
+
+        const { dispVal, selection } = this.state;
+        return (
+            <>
+                <Dropdown>
+                    {dispVal}
+                </Dropdown>
+                {this.props.results.map((n, index)=>{
+                    return(<Dropdown.Item key={index}>{n.product}</Dropdown.Item>)
+                })}
+            </>
+        )
+    }
+
 }
 
 

@@ -58,6 +58,8 @@ class CaloriesForm extends React.Component {
 
     render() {
 
+        const { calories, updList } = this.state;
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
@@ -65,12 +67,12 @@ class CaloriesForm extends React.Component {
                     <input 
                     type='text'
                     name='calories'
-                    value={this.state.calories}
+                    value={calories}
                     onChange={this.handleChange}
                     />
                 </label>
                 <input type='submit' /><br />
-                {this.state.updList && <CalRet results={this.state.updList} />}
+                {updList && <CalRet results={updList} />}
             </form>
         );
     }
