@@ -20,6 +20,7 @@ class CalRet extends React.Component {
 
     handleChange(event) {
         const dispVal = event.dispVal;
+        const selection = target.selection;
 
         this.setState({
             ...this.state,
@@ -27,11 +28,21 @@ class CalRet extends React.Component {
         });
     }
     
-    handleSelect(selection) {
+    handleSelect(event) {
         event.preventDefault();
         const selection = this.state;
 
-        const floute = "http://127.0.0.1:5000/"
+        const floute = "http://127.0.0.1:5000/calsel"
+
+        axios.post(floute, {
+            'selection':`${selection}`
+        })
+        .then((response) => {
+            var message = response.data.message;
+        })
+        .catch(function(error) {
+            console.log.bind(error);
+        });
     }
 
 }
