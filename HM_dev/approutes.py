@@ -109,6 +109,10 @@ def calories():
 
     return(retmsg)
 
+@app.route('/calsel', methods=['POST'])
+def calselect():
+    pass
+
 #Ability for users to change certain things will exist eventually
 @app.route('/settings', methods=['POST', 'GET'])
 def change_settings():
