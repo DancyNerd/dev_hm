@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
+import Dropdown from 'react-boostrap/Dropdown';
 
 //Returns list of selectable options based on user's calorie input.
 
-function CalRet ({ results}) {
+class CalRet extends React.Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <p>
-            Found it! {results.map(function(d, ind){
-                return(<li key={ind}>{d.product}</li>)
-            })}
-        </p>
-    );
+        this.state = {
+            
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+
+    }
+
+
+    
 }
+
+
+
+
+
+
+
+
 
 
 export default CalRet;
