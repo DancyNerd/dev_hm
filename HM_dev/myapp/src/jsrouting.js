@@ -16,7 +16,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function AppRouting() {
 
-    //const username = 'fakeusername';
 
     return (
         <Router>
